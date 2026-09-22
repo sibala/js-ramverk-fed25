@@ -4,7 +4,6 @@
 ## Goals
 
 After this lecture you can:
-- explain why we use a framework like React instead of manipulating the DOM by hand
 - create and run a React project with Vite
 - write JSX, and know the rules that differ from HTML
 - split a page into function components and import/export them
