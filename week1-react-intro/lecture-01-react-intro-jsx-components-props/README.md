@@ -1,16 +1,14 @@
 # Lecture 1 – React intro, JSX, components and props
 
-**Week 1 · Lecture 1** · Code-along: `1.JSX`, `2.ComponentsAndProps` · Exercise: **Basic layout**
 
 ## Goals
 
 After this lecture you can:
-
 - explain why we use a framework like React instead of manipulating the DOM by hand
 - create and run a React project with Vite
 - write JSX, and know the rules that differ from HTML
 - split a page into function components and import/export them
-- pass data to components with props, including `children`
+- pass data to components with props
 - inspect components and props with React Developer Tools
 
 ## Before the lecture: tools
@@ -70,17 +68,3 @@ npm run dev
 - [Passing props to a component](https://react.dev/learn/passing-props-to-a-component)
 - [React Developer Tools](https://react.dev/learn/react-developer-tools)
 
----
-
-## Teacher notes
-
-**Flow (≈ half day)**
-
-1. *Why frameworks?* (~20 min): imperative DOM code vs. declarative UI. Show a short vanilla JS example that updates a list, then the React version. SPA vs. MPA, in brief. Mention the framework landscape (React, Vue, Svelte, Angular). It returns for the written exam (learning outcome 2)
-2. *Tooling* (~15 min): `npm create vite@latest`, walk through the folder structure, `main.jsx` → `App.jsx`, `npm run dev`
-3. *Code-along `1.JSX`* (~30 min): show `console.log(element)` to reveal that JSX is just an object. Go through the rules in the comment block, and let the students trigger the errors (missing closing tag, `class` instead of `className`)
-4. *Code-along `2.ComponentsAndProps`* (~40 min): `GreetingsComponent` (Version 1 → 2), then `Comment` (Version 1 → 3). Open React DevTools after every refactor. End with `Card` and `children`
-5. *AI tools in this course* (~10 min): what's allowed, and using AI as a tutor rather than a code generator
-6. Exercise
-
-**Common mistakes:** component names in lowercase (`<header />` renders the HTML element!), forgetting `export default`, `import Header from './header'` with the wrong case on case-sensitive systems, calling a component like a function.
