@@ -42,18 +42,9 @@ Comment in the component you want to look at in `src/App.jsx`.
 
 ## 2. Exercise: Basic layout
 
-Folder: `basic-layout-exercise` (solution: `basic-layout-solution`)
-
+- [Övning - Basic layout.pdf](Övning - Basic layout.pdf)
 Build the layout in the picture, with **one component per section** and a **Navigation component that is reused** in both the header and the sidebar.
-All instructions are in `src/App.jsx`.
 
-![Basic layout](images/basic-layout.png)
-
-```bash
-cd basic-layout-exercise
-npm install
-npm run dev
-```
 
 ## 3. Reading instructions
 
