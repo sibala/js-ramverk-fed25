@@ -1,5 +1,9 @@
 # Lecture 1 – React intro, JSX, components and props
 
+## Video links
+- [01 - Course intro, Getting started with React, JSX part 1](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F09%20JavaScript%20Ramverk%2FRecordings%2FJavaScript%20Ramverk%2D20260922%5F090336%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Efb633189%2D90e5%2D49e6%2D9a8c%2D3bd8f09a3c23)
+- [02 - JSX part 2](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F09%20JavaScript%20Ramverk%2FRecordings%2FJavaScript%20Ramverk%2D20260922%5F101116%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Ef251fef0%2D585c%2D40e6%2D9bc5%2D1d0491591755)
+- [03 - Components and Props](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F09%20JavaScript%20Ramverk%2FRecordings%2FJavaScript%20Ramverk%2D20260922%5F105625%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E6b23d954%2D4605%2D49dd%2Dbd51%2D12a823279121)
 
 ## Goals
 
@@ -42,7 +46,7 @@ Comment in the component you want to look at in `src/App.jsx`.
 
 ## 2. Exercise: Basic layout
 
-- [Övning - Basic layout.pdf](Övning - Basic layout.pdf)
+- [basic-layout-exercise.pdf](basic-layout-exercise.pdf)
 Build the layout in the picture, with **one component per section** and a **Navigation component that is reused** in both the header and the sidebar.
 
 
