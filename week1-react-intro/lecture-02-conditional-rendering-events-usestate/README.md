@@ -1,9 +1,9 @@
 # Lecture 2 – Conditional rendering, event handlers and useState
 
 ## Video links
-- [01 - ...]()
-- [02 - ...]()
-- [03 - ...]()
+- [01 - Conditional Rendering & Basic Layout Solution](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F09%20JavaScript%20Ramverk%2FRecordings%2FJavaScript%20Ramverk%2D20260924%5F090148%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Ea9ebad11%2D5708%2D4d6c%2D9c7a%2Dea02c0b3978c)
+- [02 - Click Event](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F09%20JavaScript%20Ramverk%2FRecordings%2FJavaScript%20Ramverk%2D20260924%5F095605%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E02d45a81%2Dc0be%2D4705%2D85c2%2D4b117cbc5e24)
+- [03 - useState Hook](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F09%20JavaScript%20Ramverk%2FRecordings%2FJavaScript%20Ramverk%2D20260924%5F102036%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E9c317fc3%2D41f3%2D40c1%2D80c8%2Db533dade70d2)
 
 ## Goals
 
