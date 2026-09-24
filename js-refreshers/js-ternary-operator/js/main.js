@@ -60,6 +60,9 @@ console.log('############## Shorthand ternary operator  ###############')
 // else print the value on the left of "&&"
 console.log(isRaining && "Stay home")
 
+// NOTE! In React the following doesn't get rendered: false, true, null, undefined, ''
+// Which makes some shorthand ternary operations with &&, 
+// more applicable in React than in vanilla JS
 
 
 
