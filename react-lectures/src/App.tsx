@@ -4,6 +4,7 @@ import profilePicture from './assets/profile-picture.png'
 import Comment from './components/2.ComponentsAndProps/comment/Comment'
 import Card from './components/2.ComponentsAndProps/Card'
 import Avatar from './components/2.ComponentsAndProps/comment/Avatar'
+import PackList from './components/3.ConditionalRendering/PackList';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
     {/* ===== Lecture 2: 4. Event handlers ===== */}
 
     {/* ===== Lecture 2: 3. Conditional rendering ===== */}
+    <PackList />
 
 
     {/* ===== Lecture 1: 2. Components and props ===== */}
