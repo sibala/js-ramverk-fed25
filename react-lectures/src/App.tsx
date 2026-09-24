@@ -5,6 +5,9 @@ import Comment from './components/2.ComponentsAndProps/comment/Comment'
 import Card from './components/2.ComponentsAndProps/Card'
 import Avatar from './components/2.ComponentsAndProps/comment/Avatar'
 import PackList from './components/3.ConditionalRendering/PackList';
+import ClickEvent from './components/4.EventHandlers/ClickEvent';
+import UseStateExample from './components/5.UseStateHook/UseStateExample';
+import ToggleExample from './components/5.UseStateHook/ToggleExample';
 
 function App() {
 
@@ -21,12 +24,15 @@ function App() {
   return (
    <>
     {/* ===== Lecture 2: 5. useState hook ===== */}
+    <ToggleExample />
+    {/* <UseStateExample /> */}
 
 
     {/* ===== Lecture 2: 4. Event handlers ===== */}
+    {/* <ClickEvent /> */}
 
     {/* ===== Lecture 2: 3. Conditional rendering ===== */}
-    <PackList />
+    {/* <PackList /> */}
 
 
     {/* ===== Lecture 1: 2. Components and props ===== */}
