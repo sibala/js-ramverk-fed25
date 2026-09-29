@@ -32,7 +32,7 @@ In the app **`react-lectures`**, study:
 - `6.ListsAndKeys/Blog.tsx`: Version 1 (index as key, wrong) → Version 4 (`.filter().map()` directly in JSX)
 - `7.StateWithArraysAndObjects/`
   - `ShoppingList.tsx`: add with spread, remove with `.filter()`, toggle with `.map()`, and a derived counter
-  - `ProfileEditor.tsx`: updating objects and nested objects
+  - `Product.tsx`: sub component of `ShoppingList.tsx`
 
 ## 4. Exercise: Phonebook, version 1
 
