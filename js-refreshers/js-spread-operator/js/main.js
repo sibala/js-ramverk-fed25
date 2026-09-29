@@ -7,7 +7,7 @@ function sum(x, y, z) {
     console.log(x + y + z);
 }
 let numbers = [1, 2, 3];
-sum(...numbers);
+sum(...numbers); // equivalent to sum(numbers[0], numbers[1], numbers[2]);
 
 
 console.log("### Spread can be used for retrieving function arguments ###");
@@ -19,16 +19,29 @@ sum(1, 2, 3, 5, 6);
 
 
 console.log("### Spread can be used for adding elements to an array ###");
-let array = [1, 2, 3]
+let arrayState = [1, 2, 3]
 let element1 = 4
 let element2 = 5
 let element3 = 6
+
+
+
+
 let newArray = [
-    ...array,
+    ...arrayState,
     element1,
     element2,
     element3,
 ]
+// Equivalent with above code
+// let newArray = [
+//     1, 
+//     2, 
+//     3,
+//     element1,
+//     element2,
+//     element3,
+// ]
 
 console.log(newArray);
 
