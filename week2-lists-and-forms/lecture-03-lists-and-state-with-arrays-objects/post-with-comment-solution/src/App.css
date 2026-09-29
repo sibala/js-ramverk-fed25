@@ -24,6 +24,7 @@
 
 .author-info {
   border: 3px solid green;
+  margin-bottom: 20px;
 }
 .liked {
   background-color: hotpink;

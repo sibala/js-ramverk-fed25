@@ -36,7 +36,7 @@ In the app **`react-lectures`**, study:
 
 ## 4. Exercise: Phonebook, version 1
 
-Folder: `phonebook-exercise`
+Folder: `phonebook-v1-exercise`
 
 Generate a contact list, then add favorites, conditional classes, delete and filter buttons, all by updating state immutably. All instructions are in `src/components/PhoneBook.tsx`.
 

@@ -1,5 +1,6 @@
 import profilePicture from './assets/profile-picture.png'
 import './App.css'
+import Post from './components/Post';
 
 /**
  * Exercise: Post with comment
@@ -52,13 +53,10 @@ function App() {
       image: profilePicture,
     },
   }
-
-  // You'll pass "comment" down in Part 1. Until then, this log keeps TypeScript happy
-  console.log(comment)
-
+  
   return (
     <div id="container">
-      <img src={post.author.image} alt="profile" height="50" />
+      <Post post={post} comment={comment}/>
     </div>
   )
 }
