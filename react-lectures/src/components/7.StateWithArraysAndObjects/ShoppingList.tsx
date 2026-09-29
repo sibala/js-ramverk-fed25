@@ -15,6 +15,8 @@
  *   Version 2: one product = one child component, and the parent hands it the functions
  */
 
+import { useState } from "react";
+
 
 type Product = {
   id: string
@@ -26,22 +28,50 @@ const initialItems: Product[] = [
   { id: '1', name: 'Milk', done: false },
   { id: '2', name: 'Bread', done: true },
   { id: '3', name: 'Coffee', done: false },
+  { id: '4', name: 'Croissant', done: false },
 ]
 
 const ShoppingList = () => {
+  const [items, setItems] = useState(initialItems)
+
+  const addItem = () => {
+    setItems([
+      ...items, // Spread operator
+      { id: '5', name: 'Oat Milk', done: false } // The new Item
+    ])
+  }
+
+  const removeItem = (id: string) => {
+    setItems(
+      items.filter(item => item.id != id)
+    )
+  }
+
+
+
 
   /**
    * Version 1: one component does everything
    */
+  return (
+    <section>
+      <h1>Shopping List</h1>
 
+      <ul>
+        { items.map(item => {
+          return (
+            <li key={item.id}>
+              {/* <input type="checkbox" checked={item.done} /> */}
+              <label>{item.name}</label>
+              <button onClick={() => removeItem(item.id)}>Delete</button>
+            </li>
+          )
+        })}
+      </ul>
 
-
-  /**
-   * Version 2: the <li> moves into its own component, Product.tsx
-   *
-   * Product is a separate file. So we hand values and functions them over as props:
-   */
-
+      <button onClick={addItem}>Add item</button>
+    </section>
+  )
 }
 
 export default ShoppingList

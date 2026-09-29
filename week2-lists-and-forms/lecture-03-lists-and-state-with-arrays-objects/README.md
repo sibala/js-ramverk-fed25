@@ -15,7 +15,6 @@ After this lecture you can:
 - filter lists with `.filter()` before rendering
 - add, remove and update items in array state **without mutating** it
 - update objects (and nested objects) in state with the spread operator
-- pass a function down as a prop, so a child can ask its parent to change the state
 
 ## 1. Solution to the previous exercise
 
@@ -32,7 +31,6 @@ In the app **`react-lectures`**, study:
 - `6.ListsAndKeys/Blog.tsx`: Version 1 (index as key, wrong) → Version 4 (`.filter().map()` directly in JSX)
 - `7.StateWithArraysAndObjects/`
   - `ShoppingList.tsx`: add with spread, remove with `.filter()`, toggle with `.map()`, and a derived counter
-  - `Product.tsx`: sub component of `ShoppingList.tsx`
 
 ## 4. Exercise: Phonebook, version 1
 

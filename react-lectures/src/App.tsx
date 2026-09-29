@@ -8,6 +8,8 @@ import PackList from './components/3.ConditionalRendering/PackList';
 import ClickEvent from './components/4.EventHandlers/ClickEvent';
 import UseStateExample from './components/5.UseStateHook/UseStateExample';
 import ToggleExample from './components/5.UseStateHook/ToggleExample';
+import Blog from './components/6.ListsAndKeys/Blog';
+import ShoppingList from './components/7.StateWithArraysAndObjects/ShoppingList';
 
 function App() {
 
@@ -23,8 +25,15 @@ function App() {
 
   return (
    <>
+    {/* ===== Lecture 3: 5. State with arrays ===== */}
+    <ShoppingList />
+
+
+    {/* ===== Lecture 3: 5. Lists and Keys ===== */}
+    {/* <Blog /> */}
+
     {/* ===== Lecture 2: 5. useState hook ===== */}
-    <ToggleExample />
+    {/* <ToggleExample /> */}
     {/* <UseStateExample /> */}
 
 
