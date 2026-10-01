@@ -10,6 +10,8 @@ import UseStateExample from './components/5.UseStateHook/UseStateExample';
 import ToggleExample from './components/5.UseStateHook/ToggleExample';
 import Blog from './components/6.ListsAndKeys/Blog';
 import ShoppingList from './components/7.StateWithArraysAndObjects/ShoppingList';
+import FormWithHooksBasics from './components/8.Forms/FormWithHooksBasics';
+import RegisterForm from './components/8.Forms/RegisterForm';
 
 function App() {
 
@@ -25,11 +27,19 @@ function App() {
 
   return (
    <>
-    {/* ===== Lecture 3: 5. State with arrays ===== */}
-    <ShoppingList />
+
+    {/* ===== Lecture 4: 8. Forms ===== */}
+    <RegisterForm />
+    {/* <FormWithHooksBasics /> */}
+    
 
 
-    {/* ===== Lecture 3: 5. Lists and Keys ===== */}
+    {/* ===== Lecture 4: 7. State with arrays and objects - Further build on previous lecture ===== */}
+    {/* ===== Lecture 3: 7. State with arrays and objects===== */}
+    {/* <ShoppingList /> */}
+
+
+    {/* ===== Lecture 3: 6. Lists and Keys ===== */}
     {/* <Blog /> */}
 
     {/* ===== Lecture 2: 5. useState hook ===== */}
