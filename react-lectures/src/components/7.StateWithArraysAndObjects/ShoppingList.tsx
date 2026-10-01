@@ -28,7 +28,7 @@ const initialItems: Product[] = [
   { id: '1', name: 'Milk', done: false },
   { id: '2', name: 'Bread', done: true },
   { id: '3', name: 'Coffee', done: false },
-  { id: '4', name: 'Croissant', done: false },
+  { id: '4', name: 'Croissant', done: true },
 ]
 
 const ShoppingList = () => {
@@ -39,6 +39,37 @@ const ShoppingList = () => {
       ...items, // Spread operator
       { id: '5', name: 'Oat Milk', done: false } // The new Item
     ])
+  }
+
+
+  const toggleDoneItem = (id: string) => {
+    
+    let updatedItems = items.map(item => {
+      if (item.id === id) {
+        return {
+          ...item,
+          done : !item.done,
+        }
+
+        // {
+        //   id: '4',
+        //   name: 'Croissant', 
+        //   done: false
+        //   done: !false // meaning true
+        // }
+
+        // {
+        //   id: '4',
+        //   name: 'Croissant', 
+        //   done: true
+        // }
+      }
+      return item
+    })
+
+    setItems(
+      updatedItems
+    )
   }
 
   const removeItem = (id: string) => {
@@ -63,6 +94,7 @@ const ShoppingList = () => {
             <li key={item.id}>
               {/* <input type="checkbox" checked={item.done} /> */}
               <label>{item.name}</label>
+              <input type="checkbox" checked={item.done} onChange={() => toggleDoneItem(item.id)}/>
               <button onClick={() => removeItem(item.id)}>Delete</button>
             </li>
           )
