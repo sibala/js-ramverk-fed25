@@ -35,10 +35,8 @@ Also study `js-refreshers/js-spread-operator` again. You'll use it in every `han
 ## 3. Exercise: Phonebook, version 2
 
 Folder: `phonebook-v2-exercise`
-
 <br />
-
-See: `Phonebook-v2-in-React-Diagram.png` to get a visual on how the phonebook should be solved
+See: [Phonebook-v2-in-React-Diagram.png](Phonebook-v2-in-React-Diagram.png) to get a visual on how the phonebook should be solved
 
 The exercise folder already contains the finished app from lecture 3, so everyone starts from
 working code. You add a `ContactForm` child with one state object and one `handleChange` across
