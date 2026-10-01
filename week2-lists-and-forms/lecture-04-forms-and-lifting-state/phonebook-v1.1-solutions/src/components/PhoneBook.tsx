@@ -33,6 +33,7 @@
  * Part 6: (Extra exercise added during lecture) Create a sub component Contact.tsx (see "7.StateWithArraysAndObjects" -> ShoppingList.tsx and Product.tsx )
  * - Refactores out the <li></li> inside of the list (inside .map()), to a sub component Contact.tsx
  * - Contact gets a props type: type ContactProps = { contact: Contact, ... }
+ * - Send down needed props from parent to the newly created sub component Contact.tsx, both values and functions
  *
  * Next time: there is no way to ADD a contact yet, only to change the five that are here.
  * That needs a form, which is lecture 4. Editing a contact is a form too, so that waits as well.
@@ -87,31 +88,33 @@ const PhoneBook = () => {
     )
   }
 
+
+  const filteredContacts = contacts.filter(contact => {
+    if (filter === 'personal') {
+      return contact.type === 'personal'
+    }
+
+    if (filter === 'business') {
+      return contact.type === 'business'
+    }
+
+    if (filter === 'favorites') {
+      return contact.isFavorite
+    }
+    
+    return true
+  })
+
   return (
     <section>
       <button onClick={()=> setFilter('all')}>All</button>
       <button onClick={()=> setFilter('personal')}>Personal</button>
       <button onClick={()=> setFilter('business')}>Business</button>
       <button onClick={()=> setFilter('favorites')}>Favorites</button>
+      <p>Showing {filteredContacts.length} of {contacts.length} contacts</p>
       <ul>
-        {contacts.filter(contact => {
-          if (filter === 'personal') {
-            return contact.type === 'personal'
-          }
-
-          if (filter === 'business') {
-            return contact.type === 'business'
-          }
-
-          if (filter === 'favorites') {
-            return contact.isFavorite
-          }
-          
-          return true
-        })
-
-        
-        .map(contact => {
+        {
+        filteredContacts.map(contact => {
           return (
             <li key={contact.id} className={`${contact.type === 'business' ? 'business' : ''} ${contact.isFavorite ? 'favorite' : ''}`}>
               <span className="contact-name">{contact.name}</span>
