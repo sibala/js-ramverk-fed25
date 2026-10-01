@@ -16,15 +16,12 @@
  */
 
 import { useState } from "react";
+import type { Product as ProductType } from "./types"; // Rename/Give a new Alias to the type Product (E.g ProductType), so that it wont collide with the sub component Product
+import Product from "./Product";
 
 
-type Product = {
-  id: string
-  name: string
-  done: boolean
-}
 
-const initialItems: Product[] = [
+const initialItems: ProductType[] = [
   { id: '1', name: 'Milk', done: false },
   { id: '2', name: 'Bread', done: true },
   { id: '3', name: 'Coffee', done: false },
@@ -93,12 +90,7 @@ const ShoppingList = () => {
       <ul>
         { items.map(item => {
           return (
-            <li key={item.id}>
-              {/* <input type="checkbox" checked={item.done} /> */}
-              <label>{item.name}</label>
-              <input type="checkbox" checked={item.done} onChange={() => toggleDoneItem(item.id)}/>
-              <button onClick={() => removeItem(item.id)}>Delete</button>
-            </li>
+            <Product key={item.id} product={item} toggleDone={toggleDoneItem} removeItem={removeItem} />
           )
         })}
       </ul>
