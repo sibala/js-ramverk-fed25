@@ -22,7 +22,7 @@ Go through `phonebook-v1-solution` from lecture 3. It's also the starting point 
 In the app **`react-lectures`**, study:
 
 
-- `7.StateWithArraysAndObjects/` 
+- `7.StateWithArraysAndObjects/` Further build on pervious lecture with toggleDoneItem and refactor to a sub component Product.tsx
   - `ShoppingList.tsx`: 
   - `Product.tsx`: 
 - `8.Forms/`
