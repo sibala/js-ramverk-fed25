@@ -52,8 +52,7 @@ const initialContacts: ContactType[] = [
   { id: 2, name: 'Jane Smith', phone: '234-567-8901', type: 'business', isFavorite: false },
   { id: 3, name: 'Bob Johnson', phone: '345-678-9012', type: 'personal', isFavorite: true },
   { id: 4, name: 'Alice Brown', phone: '456-789-0123', type: 'business', isFavorite: true },
-  { id: 5, name: 'Charlie Wilson', phone: '567-890-1234', type: 'personal', isFavorite: false },
-  { id: 5, name: 'Charlie Wilson', phone: '567-890-1234', type: 'personal', isFavorite: false },
+  { id: 5, name: 'Charlie Wilson', phone: '567-890-1234', type: 'personal', isFavorite: false }
 ]
 
 
