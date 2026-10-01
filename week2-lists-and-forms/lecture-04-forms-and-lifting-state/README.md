@@ -1,6 +1,12 @@
 # Lecture 4 – Forms and lifting state up
 
 
+## Video links
+- [01 - Phonebook V1 solution](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F09%20JavaScript%20Ramverk%2FRecordings%2FJavaScript%20Ramverk%2D20261001%5F090855%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Ea7e43a01%2Df503%2D437e%2D9ecb%2D9abf2047360c)
+- [02 - Update Object in State & extra exercise in Phonebook V1.1 (part 5 - toggleFavorite)](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F09%20JavaScript%20Ramverk%2FRecordings%2FJavaScript%20Ramverk%2D20261001%5F101433%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Ef572e5af%2D6876%2D47db%2Db643%2D9eee6baadc5b)
+- [03 - Refactor to sub component & extra exercise in Phonebook V1.1 (part 6 - Contact.tsx)](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F09%20JavaScript%20Ramverk%2FRecordings%2FJavaScript%20Ramverk%2D20261001%5F113050%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E9f795be3%2Dc167%2D4cce%2Da57e%2D4c111dea51eb)
+- [04 - Handle Forms, and new exercises in phonebook-v2-exercises](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F09%20JavaScript%20Ramverk%2FRecordings%2FJavaScript%20Ramverk%2D20261001%5F134242%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E2a205071%2De306%2D49c6%2Db9d2%2D5249093b00f0)
+
 ## Goals
 
 After this lecture you can:
