@@ -51,13 +51,15 @@ const ShoppingList = () => {
           done : !item.done,
         }
 
+        // When updating Croissant to done from "false" to  "true", the item object is generated
         // {
         //   id: '4',
         //   name: 'Croissant', 
         //   done: false
-        //   done: !false // meaning true
+        //   done: !false // meaning true. The latter done will override the previous done. The end item object is below
         // }
 
+        // The end item object
         // {
         //   id: '4',
         //   name: 'Croissant', 

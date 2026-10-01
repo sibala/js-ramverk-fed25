@@ -29,6 +29,10 @@
  * - Add a checbox to each contact
  * - Create a function toggleFavorite(id) in PhoneBook. It flips "isFavorite" for the contact with that id
  *   Remember: don't mutate! Use .map() and the spread operator to create a NEW array
+ * 
+ * Part 6: (Extra exercise added during lecture) Create a sub component Contact.tsx (see "7.StateWithArraysAndObjects" -> ShoppingList.tsx and Product.tsx )
+ * - Refactores out the <li></li> inside of the list (inside .map()), to a sub component Contact.tsx
+ * - Contact gets a props type: type ContactProps = { contact: Contact, ... }
  *
  * Next time: there is no way to ADD a contact yet, only to change the five that are here.
  * That needs a form, which is lecture 4. Editing a contact is a form too, so that waits as well.
