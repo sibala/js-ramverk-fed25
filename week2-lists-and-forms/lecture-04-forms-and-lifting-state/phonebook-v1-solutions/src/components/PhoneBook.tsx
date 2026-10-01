@@ -32,19 +32,67 @@
  * NOTE! The Contact and Filter types are in src/types.ts, so every component can import them
  */
 
+import { useState } from 'react';
 import type { Contact } from '../types'
 
 const initialContacts: Contact[] = [
   { id: 1, name: 'John Doe', phone: '123-456-7890', type: 'personal', isFavorite: false },
   { id: 2, name: 'Jane Smith', phone: '234-567-8901', type: 'business', isFavorite: false },
   { id: 3, name: 'Bob Johnson', phone: '345-678-9012', type: 'personal', isFavorite: true },
-  { id: 4, name: 'Alice Brown', phone: '456-789-0123', type: 'business', isFavorite: false },
+  { id: 4, name: 'Alice Brown', phone: '456-789-0123', type: 'business', isFavorite: true },
   { id: 5, name: 'Charlie Wilson', phone: '567-890-1234', type: 'personal', isFavorite: false },
 ]
 
 const PhoneBook = () => {
-  console.log(initialContacts)
-  return <p>Start here!</p>
+
+  const [contacts, setContacts] = useState(initialContacts)
+  const [filter, setFilter] = useState('personal')
+
+  const deleteContact = (id: number) => {
+    setContacts(
+      contacts.filter(contact => contact.id != id)
+    )
+  }
+
+  return (
+    <section>
+      <button onClick={()=> setFilter('all')}>All</button>
+      <button onClick={()=> setFilter('personal')}>Personal</button>
+      <button onClick={()=> setFilter('business')}>Business</button>
+      <button onClick={()=> setFilter('favorites')}>Favorites</button>
+      <ul>
+        {contacts.filter(contact => {
+          if (filter === 'personal') {
+            return contact.type === 'personal'
+          }
+
+          if (filter === 'business') {
+            return contact.type === 'business'
+          }
+
+          if (filter === 'favorites') {
+            return contact.isFavorite
+          }
+          
+          return true
+        })
+
+        
+        .map(contact => {
+          return (
+            <li key={contact.id} className={`${contact.type === 'business' ? 'business' : ''} ${contact.isFavorite ? 'favorite' : ''}`}>
+              <span className="contact-name">{contact.name}</span>
+              <span className="contact-phone">{contact.phone}</span>
+              <span className="contact-phone">{contact.type}</span>
+              <span className="contact-phone">{contact.isFavorite && 'True'}</span>
+
+              <button onClick={() => deleteContact(contact.id)}>Delete</button>
+            </li>
+          )
+        })}
+      </ul>
+    </section>
+  )
 }
 
 export default PhoneBook
