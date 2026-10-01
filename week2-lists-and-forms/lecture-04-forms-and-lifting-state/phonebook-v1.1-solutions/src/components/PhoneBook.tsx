@@ -57,6 +57,30 @@ const PhoneBook = () => {
   const [contacts, setContacts] = useState(initialContacts)
   const [filter, setFilter] = useState('personal')
 
+
+  const toggleFavorite = (id: number) => {
+
+      // the state "contacts" is immutable => 
+      // Not allowed to update directly. If updated is needed, then need to re-generate the whole value through setContacts
+      const updatedContacts = contacts.map((contact) => {
+        if (contact.id === id) {
+          return {
+            ...contact,
+            isFavorite: !contact.isFavorite
+          }
+        }
+        
+        return contact
+      })
+
+      setContacts(
+        updatedContacts
+      )
+
+      // may refactor the above code with shorthand arrowfunctions and ternary operator
+      // setContacts(contacts.map((contact => contact.id === id ? {...contact,isFavorite: !contact.isFavorite} : contact))
+  }
+
   const deleteContact = (id: number) => {
     setContacts(
       contacts.filter(contact => contact.id != id)
@@ -95,6 +119,7 @@ const PhoneBook = () => {
               <span className="contact-phone">{contact.type}</span>
               <span className="contact-phone">{contact.isFavorite && 'True'}</span>
 
+              <input type="checkbox" checked={contact.isFavorite} onChange={() => toggleFavorite(contact.id)}/>
               <button onClick={() => deleteContact(contact.id)}>Delete</button>
             </li>
           )

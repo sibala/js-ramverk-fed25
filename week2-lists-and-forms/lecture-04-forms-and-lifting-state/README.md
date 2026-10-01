@@ -21,14 +21,14 @@ Go through `phonebook-v1-solution` from lecture 3. It's also the starting point 
 
 In the app **`react-lectures`**, study:
 
+
+- `7.StateWithArraysAndObjects/` 
+  - `ShoppingList.tsx`: 
+  - `Product.tsx`: 
 - `8.Forms/`
   - `FormWithHooksBasics.tsx`: controlled inputs and `preventDefault`
   - `RegisterForm.tsx`: one state object, one `handleChange` (Version 1 → 2), checkbox, select and validation.
     **This is the pattern the contact form needs**, because a contact has four fields
-- `9.LiftingStateUp/`
-  - `Login/`: a repetition of lecture 2 in three versions, plus a child that passes data **up** to its parent
-  - `GuestList/`: a form in one child, a counter in a sibling, and the list in the parent. **This is the
-    shape the Phonebook takes today**
 
 Also study `js-refreshers/js-spread-operator` again. You'll use it in every `handleChange`.
 
