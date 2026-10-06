@@ -1,0 +1,8 @@
+/* A CSS module: class names are LOCAL. ".error" becomes something like "_error_1x2y3" */
+.error {
+  border: 1px solid red;
+  background-color: lightpink;
+  color: #5c0a0a;
+  border-radius: 5px;
+  padding: 10px;
+}

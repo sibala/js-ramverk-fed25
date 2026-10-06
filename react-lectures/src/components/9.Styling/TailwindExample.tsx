@@ -33,7 +33,7 @@ const TailwindExample = () => {
       <h2 className="mb-4 text-2xl font-bold">Tailwind + conditional classes</h2>
 
       {/* Responsive: a column on mobile, a row from md and up */}
-      <div className="flex flex-col gap-4 md:flex-row">
+      <div className="flex flex-col gap-4 lg:flex-row">
         {cards.map((card) => (
           <button
             key={card.id}

@@ -1,4 +1,5 @@
 import { useState, type ChangeEvent, type SubmitEvent} from 'react'
+import formStyle from './formStyle.module.css'
 import './formStyle.css' // Import a regular stylesheet
 
 /**
@@ -66,6 +67,7 @@ function RegisterFormWithStyling() {
   return (
     <div id="register-form-wrapper">
       <h1>Register here with style!</h1>
+
       <form onSubmit={handleFormSubmit}>
         <div className="messages">
           {/* 2. Inline styling */}
@@ -73,7 +75,7 @@ function RegisterFormWithStyling() {
           {/* 1. Class "success" from a regular stylesheet */}
           <p className="success">Success message (with regular stylesheet)</p>
           {/* 3. Class "error" from a CSS module */}
-          {/* <p className={formStyle.error}>Error message (with CSS module)</p> */}
+          <p className={formStyle.error}>Error message (with CSS module)</p>
         </div>
 
         <label htmlFor="styled-firstname">First name</label>

@@ -1,7 +1,7 @@
 /* A regular stylesheet: every rule is GLOBAL, even if it's imported from one component */
 #register-form-wrapper {
   box-sizing: border-box;
-  max-width: 500px;
+  max-width: 600px;
   margin: 20px auto;
   text-align: left;
 }
@@ -24,4 +24,9 @@
   color: #0b3d0b;
   border-radius: 5px;
   padding: 10px;
+}
+
+
+.error {
+  background-color: purple;
 }
