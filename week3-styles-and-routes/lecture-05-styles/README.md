@@ -28,7 +28,7 @@ Tailwind setup in a Vite project: add `tailwindcss()` to the plugins in `vite.co
 
 In the app **`react-lectures`**, study:
 
-- `10.Styling/`
+- `9.Styling/`
   - `RegisterFormWithStyling.tsx`: regular CSS vs. inline styles vs. CSS modules
   - `TailwindExample.tsx`: Tailwind utility classes, responsive design
 
