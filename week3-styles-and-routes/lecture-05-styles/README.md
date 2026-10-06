@@ -37,10 +37,8 @@ In the app **`react-lectures`**, study:
 - Start working on the portfolio assignment found in itslearning
 
 
-
 ## 5. Reading instructions
-
-- [CSS modules in Vite](https://vite.dev/guide/features.html)
+- [CSS modules in Vite](https://vite.dev/guide/features#css-modules)
 - [Tailwind CSS with Vite](https://tailwindcss.com/docs/installation/using-vite)
 - [Styling with utility classes](https://tailwindcss.com/docs/styling-with-utility-classes)
 - [Using CSS transitions (MDN)](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_transitions/Using_CSS_transitions)

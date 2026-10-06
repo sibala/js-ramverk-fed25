@@ -12,6 +12,8 @@ import Blog from './components/6.ListsAndKeys/Blog';
 import ShoppingList from './components/7.StateWithArraysAndObjects/ShoppingList';
 import FormWithHooksBasics from './components/8.Forms/FormWithHooksBasics';
 import RegisterForm from './components/8.Forms/RegisterForm';
+import RegisterFormWithStyling from './components/9.Styling/RegisterFormWithStyling';
+import TailwindExample from './components/9.Styling/TailwindExample';
 
 function App() {
 
@@ -28,8 +30,12 @@ function App() {
   return (
    <>
 
+    {/* ===== Lecture 5: 9. Styling ===== */}
+    {/* <TailwindExample /> */}
+    {/* <RegisterFormWithStyling /> */}
+
     {/* ===== Lecture 4: 8. Forms ===== */}
-    <RegisterForm />
+    {/* <RegisterForm /> */}
     {/* <FormWithHooksBasics /> */}
     
 

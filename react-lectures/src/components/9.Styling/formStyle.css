@@ -1,0 +1,27 @@
+/* A regular stylesheet: every rule is GLOBAL, even if it's imported from one component */
+#register-form-wrapper {
+  box-sizing: border-box;
+  max-width: 500px;
+  margin: 20px auto;
+  text-align: left;
+}
+
+#register-form-wrapper input[type='text'],
+#register-form-wrapper input[type='email'],
+#register-form-wrapper select,
+#register-form-wrapper textarea {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: 1px solid #333;
+}
+
+.success {
+  border: 1px solid green;
+  background-color: lightgreen;
+  color: #0b3d0b;
+  border-radius: 5px;
+  padding: 10px;
+}

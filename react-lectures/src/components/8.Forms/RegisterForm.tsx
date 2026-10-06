@@ -25,13 +25,13 @@ type Errors = Partial<Record<keyof User, string>>
 
 
 const initialUser: User = {
-    firstname: '',
-    lastname: '',
-    email: '',
-    comment: '',
-    country: 'IRQ',
-    newsletter: false,
-  }
+  firstname: '',
+  lastname: '',
+  email: '',
+  comment: '',
+  country: 'IRQ',
+  newsletter: false,
+}
 
 /**
  * React is very controlling.
@@ -86,8 +86,8 @@ const RegisterForm = () => {
     // Error handling if no error set isSubmitted to true
     setIsSubmitted(true)
 
-    setUser(initialUser) // Reset after success
     alert(JSON.stringify(user))
+    setUser(initialUser) // Reset after success
   }
 
   return (
