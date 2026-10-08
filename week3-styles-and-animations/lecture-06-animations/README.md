@@ -1,6 +1,5 @@
 # Lecture 6 – Animation
 
-
 ## Goals
 
 After this lecture you can:
