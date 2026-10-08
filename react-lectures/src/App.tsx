@@ -29,9 +29,10 @@ function App() {
 
   return (
    <>
+    {/* ===== Lecture 6: 10. Animation ===== */}
 
     {/* ===== Lecture 5: 9. Styling ===== */}
-    <TailwindExample />
+    {/* <TailwindExample /> */}
     {/* <RegisterFormWithStyling /> */}
 
     {/* ===== Lecture 4: 8. Forms ===== */}
