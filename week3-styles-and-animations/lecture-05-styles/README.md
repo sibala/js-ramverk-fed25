@@ -1,4 +1,4 @@
-# Lecture 5 – Styling and animation
+# Lecture 5 – Styling
 
 
 ## Video links
