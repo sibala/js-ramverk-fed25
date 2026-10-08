@@ -14,6 +14,9 @@ import FormWithHooksBasics from './components/8.Forms/FormWithHooksBasics';
 import RegisterForm from './components/8.Forms/RegisterForm';
 import RegisterFormWithStyling from './components/9.Styling/RegisterFormWithStyling';
 import TailwindExample from './components/9.Styling/TailwindExample';
+import MotionBasics from './components/10.Animation/MotionBasics';
+import AnimatePresenceExample from './components/10.Animation/AnimatePresenceExample';
+import StaggerList from './components/10.Animation/StaggerList';
 
 function App() {
 
@@ -30,6 +33,9 @@ function App() {
   return (
    <>
     {/* ===== Lecture 6: 10. Animation ===== */}
+    <StaggerList />
+    {/* <AnimatePresenceExample /> */}
+    {/* <MotionBasics /> */}
 
     {/* ===== Lecture 5: 9. Styling ===== */}
     {/* <TailwindExample /> */}
