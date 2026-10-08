@@ -8,8 +8,7 @@
 ## Goals
 
 After this lecture you can:
-- use CSS transitions for simple hover and focus effects
-- use **Motion** for mount animations, gestures, exit animations (`AnimatePresence`) and layout animations
+- use **Motion** for mount animations, gestures, exit animations (`AnimatePresence`) and stagger lists
 
 ## 1. Packages
 - Motion (formerly Framer Motion): `npm install motion`
