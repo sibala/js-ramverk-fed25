@@ -26,7 +26,7 @@ In the app **`react-lectures`**, study `11.UseEffectAndFetchingData/`:
 
 - `Clock.tsx`: cleanup in its simplest form (a timer that must be stopped)
 - `HooksExample.tsx` (extra): `document.title` and several effects in one component
-- `PostList.tsx`: **Version 1 → 4**: an infinite loop → fetch on mount → fetch on update → cleanup against race conditions
+- `PostList.tsx`: **Version 1 → 4**: an infinite loop → fetch on mount → fetch on update → Loading and error handling
 
 
 ## 3. Exercise: Puns client v1

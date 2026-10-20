@@ -20,6 +20,7 @@ import StaggerList from './components/10.Animation/StaggerList';
 import Clock from './components/11.UseEffectAndFetchingData/Clock';
 import { useState } from 'react';
 import HooksExample from './components/11.UseEffectAndFetchingData/HooksExample';
+import PostList from './components/11.UseEffectAndFetchingData/PostList';
 
 
 function App() {
@@ -37,7 +38,8 @@ function App() {
   return (
    <>
     {/* ===== Lecture 8: 11.UseEffectAndFetchingData  ===== */}
-    <HooksExample />
+    <PostList />
+    {/* <HooksExample /> */}
     
     {/* {displayClock && <Clock />}
     <button onClick={() => setDisplayClock(!displayClock)}> Mount / Unmount Clock</button> */}
