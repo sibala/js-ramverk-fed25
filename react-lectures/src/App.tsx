@@ -17,6 +17,10 @@ import TailwindExample from './components/9.Styling/TailwindExample';
 import MotionBasics from './components/10.Animation/MotionBasics';
 import AnimatePresenceExample from './components/10.Animation/AnimatePresenceExample';
 import StaggerList from './components/10.Animation/StaggerList';
+import Clock from './components/11.UseEffectAndFetchingData/Clock';
+import { useState } from 'react';
+import HooksExample from './components/11.UseEffectAndFetchingData/HooksExample';
+import PostList from './components/11.UseEffectAndFetchingData/PostList';
 
 function App() {
 
@@ -32,8 +36,16 @@ function App() {
 
   return (
    <>
+    {/* ===== Lecture 8: 11.UseEffectAndFetchingData  ===== */}
+    
+
+
+    
+    {/* ===== Lecture 7: Vercel deployment, nothing in React :)  ===== */}
+
+
     {/* ===== Lecture 6: 10. Animation ===== */}
-    <StaggerList />
+    {/* <StaggerList /> */}
     {/* <AnimatePresenceExample /> */}
     {/* <MotionBasics /> */}
 
