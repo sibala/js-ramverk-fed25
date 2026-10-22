@@ -1,8 +1,10 @@
 # Lecture 10 – REST, error handling and writing data
 
 ## Video links
-- [01 - coming soon...]()
-
+- [01 - puns-client-v1-solutions part 1](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F09%20JavaScript%20Ramverk%2FRecordings%2FJavaScript%20Ramverk%2D20261022%5F090527%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E8e5ed240%2D04d5%2D48d0%2D8cf0%2Db6ecf73609b2)
+- [02 - puns-client-v1-solutions part 2](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F09%20JavaScript%20Ramverk%2FRecordings%2FJavaScript%20Ramverk%2D20261022%5F100051%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E0bc06cb4%2Da6d9%2D4531%2Db768%2D2310431c4820)
+- [03 - puns-client-v1-solutions part 3 (solved part 4)](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F09%20JavaScript%20Ramverk%2FRecordings%2FJavaScript%20Ramverk%2D20261022%5F110605%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Ec3877ac5%2Da585%2D4a99%2Dbfdb%2Df6386a327e15)
+- [04 - CRUD and error handling](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F09%20JavaScript%20Ramverk%2FRecordings%2FJavaScript%20Ramverk%2D20261022%5F112242%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E29be5ee4%2D1a3c%2D4221%2D9d38%2Dd468cba8ed66)
 
 ## Goals
 
