@@ -21,6 +21,8 @@ import Clock from './components/11.UseEffectAndFetchingData/Clock';
 import { useState } from 'react';
 import HooksExample from './components/11.UseEffectAndFetchingData/HooksExample';
 import PostList from './components/11.UseEffectAndFetchingData/PostList';
+import StatusCodes from './components/12.WritingData/StatusCodex';
+import NoteManager from './components/12.WritingData/NoteManager';
 
 
 function App() {
@@ -37,8 +39,13 @@ function App() {
 
   return (
    <>
+    {/* ===== Lecture 9: 12.WritingData  ===== */}
+    <NoteManager />
+    {/* <StatusCodes /> */}
+
+
     {/* ===== Lecture 8: 11.UseEffectAndFetchingData  ===== */}
-    <PostList />
+    {/* <PostList /> */}
     {/* <HooksExample /> */}
     
     {/* {displayClock && <Clock />}
