@@ -18,8 +18,7 @@ import PunList from './components/PunList'
  * - Add the pun the SERVER sends back to the puns state. Why that one, and not the form data? (Hint: _id and date)
  *
  * Part 2: DELETE
- * - Show a "Delete" button only on your own puns: isMyPun(pun._id)
- * - Ask first: window.confirm(`Delete "${pun.content}"?`)
+ * - Show a "Delete" button only on puns
  * - DELETE /api/puns/{id}. When the server says OK, remove the pun from the state
  *
  * Part 3: PATCH
