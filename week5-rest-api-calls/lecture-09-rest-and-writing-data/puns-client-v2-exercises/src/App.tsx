@@ -8,7 +8,7 @@ import PunList from './components/PunList'
  * Use the same fetch pattern as "16.WritingData/NoteManager": method, headers and body.
  * API docs: https://pun-api-with-auth.vercel.app/docs
  *
- * NOTE! EVERYONE in the class uses the SAME API, and it has no login. Try Only delete and edit YOUR OWN puns :)
+ * NOTE! EVERYONE in the class uses the SAME API, and it has no login. Only delete and edit YOUR OWN puns.
  *
  * Part 1: POST
  * - Make PunForm a controlled form (lecture 4): a textarea for the content, and a select with the categories
@@ -16,12 +16,11 @@ import PunList from './components/PunList'
  * - Write addPun(content, category) in PunList, and pass it to PunForm. It sends:
  *   POST /api/puns   body: { "content": "...", "category": "food" }
  * - Add the pun the SERVER sends back to the puns state. Why that one, and not the form data? (Hint: _id and date)
- * - Save its id with addMyPun(data._id), and empty the form afterwards
  *
  * Part 2: DELETE
  * - Show a "Delete" button only on your own puns: isMyPun(pun._id)
  * - Ask first: window.confirm(`Delete "${pun.content}"?`)
- * - DELETE /api/puns/{id}. When the server says OK, remove the pun from the state and call removeMyPun(pun._id)
+ * - DELETE /api/puns/{id}. When the server says OK, remove the pun from the state
  *
  * Part 3: PATCH
  * - An "Edit" button on your own puns. Ask for the new text with window.prompt('Edit your pun', pun.content)
