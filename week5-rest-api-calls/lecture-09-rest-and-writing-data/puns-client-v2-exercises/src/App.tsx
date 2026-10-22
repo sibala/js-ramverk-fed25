@@ -22,9 +22,9 @@ import PunList from './components/PunList'
  * - DELETE /api/puns/{id}. When the server says OK, remove the pun from the state
  *
  * Part 3: PATCH
- * - An "Edit" button on your own puns. Ask for the new text with window.prompt('Edit your pun', pun.content)
+ * - An "Edit" button on puns.
  * - PATCH /api/puns/{id}   body: { "content": "..." }
- * - Replace the pun in the state with the one the server sends back. Reload the page: is the change still there?
+ * - Replace the pun in the state with the one the server sends back.
  *
  * Part 4: Messages and errors
  * - Show a message after every write: "✅ Pun added", "✅ Pun deleted", "✅ Pun updated"
