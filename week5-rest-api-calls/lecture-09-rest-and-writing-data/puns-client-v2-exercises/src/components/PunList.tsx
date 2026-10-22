@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import PunItem from "./PunItem";
 import type { Pun } from "../types";
 import PunOfTheMoment from "./PunOfTheMoment";
+import PunForm from "./PunForm";
 
 
 type PunListProps = {
@@ -42,7 +43,9 @@ const PunList = ({category}: PunListProps) => {
       {isLoading && <p>Loading puns...</p>}
       {error && <p className="error">Could not load the puns: ${error}</p>}
 
+      <PunForm />
 
+      {/* Lecture 9, part 4 */}
       <PunOfTheMoment puns={puns} />
 
       <ul className="puns">
