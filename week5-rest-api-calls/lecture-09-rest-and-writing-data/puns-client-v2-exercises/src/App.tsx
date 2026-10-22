@@ -8,8 +8,7 @@ import PunList from './components/PunList'
  * Use the same fetch pattern as "16.WritingData/NoteManager": method, headers and body.
  * API docs: https://pun-api-with-auth.vercel.app/docs
  *
- * NOTE! EVERYONE in the class uses the SAME API, and it has no login. Only delete and edit YOUR OWN puns.
- * Done for you: utils/myPuns.ts remembers the ids of the puns you create (addMyPun, removeMyPun, isMyPun)
+ * NOTE! EVERYONE in the class uses the SAME API, and it has no login. Try Only delete and edit YOUR OWN puns :)
  *
  * Part 1: POST
  * - Make PunForm a controlled form (lecture 4): a textarea for the content, and a select with the categories
