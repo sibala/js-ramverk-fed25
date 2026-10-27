@@ -86,8 +86,6 @@ Split the puns client into pages (list, detail, new, 404), load data with loader
 
 ## 6. Reading instructions
 
-**Basics**
-
 - [Routing (React Router)](https://reactrouter.com/start/data/routing)
 - [Navigating (React Router)](https://reactrouter.com/start/data/navigating)
 - [useParams](https://reactrouter.com/api/hooks/useParams)
