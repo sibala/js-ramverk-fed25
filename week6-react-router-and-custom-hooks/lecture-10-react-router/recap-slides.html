@@ -1,0 +1,985 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>React Recap</title>
+<style>
+  :root {
+    --bg: #f6f4ef;
+    --stage: #fffdf9;
+    --fg: #1d1c1a;
+    --muted: #6a6760;
+    --line: #e3dfd6;
+    --surface: #f3f0e9;
+    --code-bg: #f1eee6;
+    --hl: #fff1c2;
+
+    /* One colour per concept, used everywhere in the deck */
+    --comp: #2b63d9;   --comp-soft: #e5edfc;
+    --props: #13865a;  --props-soft: #e1f4ea;
+    --state: #c8610f;  --state-soft: #fcecdc;
+    --effect: #7b4fe0; --effect-soft: #eee7fd;
+    --event: #c93355;  --event-soft: #fbe4ea;
+
+    --ok: #13865a; --warn: #b7791f; --bad: #c93355;
+    --tok-k: #7b4fe0; --tok-s: #13865a; --tok-c: #8a867c; --tok-t: #2b63d9; --tok-n: #c8610f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121212; --stage: #1b1b1a; --fg: #ecebe7; --muted: #a29f97; --line: #34332f;
+      --surface: #23221f; --code-bg: #151514; --hl: #3d3517;
+      --comp: #7ea6ff;   --comp-soft: #1d2a45;
+      --props: #4fd09a;  --props-soft: #15322a;
+      --state: #ffa25a;  --state-soft: #3a2819;
+      --effect: #b39bff; --effect-soft: #2a2242;
+      --event: #ff7f9b;  --event-soft: #3d1d26;
+      --ok: #4fd09a; --warn: #f0b85a; --bad: #ff7f9b;
+      --tok-k: #b39bff; --tok-s: #7fd8a8; --tok-c: #8a877f; --tok-t: #7ea6ff; --tok-n: #ffb27a;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121212; --stage: #1b1b1a; --fg: #ecebe7; --muted: #a29f97; --line: #34332f;
+    --surface: #23221f; --code-bg: #151514; --hl: #3d3517;
+    --comp: #7ea6ff;   --comp-soft: #1d2a45;
+    --props: #4fd09a;  --props-soft: #15322a;
+    --state: #ffa25a;  --state-soft: #3a2819;
+    --effect: #b39bff; --effect-soft: #2a2242;
+    --event: #ff7f9b;  --event-soft: #3d1d26;
+    --ok: #4fd09a; --warn: #f0b85a; --bad: #ff7f9b;
+    --tok-k: #b39bff; --tok-s: #7fd8a8; --tok-c: #8a877f; --tok-t: #7ea6ff; --tok-n: #ffb27a;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: var(--bg); color: var(--fg);
+    font: 26px/1.4 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    overflow: hidden;
+  }
+
+  /* A fixed 1280×720 stage, scaled to fit the window */
+  #viewport { position: fixed; inset: 0; display: grid; place-items: center; }
+  #stage { width: 1280px; height: 720px; position: relative; transform-origin: center; }
+  .slide {
+    position: absolute; inset: 0; display: none; flex-direction: column;
+    background: var(--stage); border-radius: 18px; padding: 56px 80px 60px;
+    box-shadow: 0 1px 2px rgb(0 0 0 / .06), 0 12px 40px rgb(0 0 0 / .08);
+    overflow: hidden;
+  }
+  .slide.active { display: flex; }
+
+  h1, h2, h3 { margin: 0; line-height: 1.15; letter-spacing: -0.01em; }
+  h1 { font-size: 68px; }
+  h2 { font-size: 48px; margin-bottom: 36px; }
+  h3 { font-size: 28px; margin-bottom: 10px; }
+  p { margin: 0 0 16px; }
+  ul, ol { margin: 0; padding-left: 1.2em; }
+  li { margin: 10px 0; }
+  .kicker { font-size: 16px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+  .muted { color: var(--muted); }
+  .small { font-size: 21px; }
+  .lead { font-size: 32px; line-height: 1.35; }
+  .center { text-align: center; }
+  .mt { margin-top: 28px; }
+  .mt-auto { margin-top: auto; }
+  b, strong { font-weight: 700; }
+
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start; }
+  .cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .cols-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .cols-wide { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; align-items: center; }
+  .cols > *, .cols-3 > *, .cols-4 > *, .cols-wide > * { min-width: 0; }
+
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px 26px; }
+  .card h3 { font-size: 26px; }
+  .card p, .card li { font-size: 22px; }
+  .card p:last-child { margin-bottom: 0; }
+
+  /* Concept colours */
+  .comp   { --c: var(--comp);   --cs: var(--comp-soft); }
+  .props  { --c: var(--props);  --cs: var(--props-soft); }
+  .state  { --c: var(--state);  --cs: var(--state-soft); }
+  .effect { --c: var(--effect); --cs: var(--effect-soft); }
+  .event  { --c: var(--event);  --cs: var(--event-soft); }
+  .card.comp, .card.props, .card.state, .card.effect, .card.event { background: var(--cs); border-color: transparent; border-left: 7px solid var(--c); }
+  .card.comp h3, .card.props h3, .card.state h3, .card.effect h3, .card.event h3 { color: var(--c); }
+  .chip { display: inline-block; padding: 3px 14px; border-radius: 99px; font-size: .8em; font-weight: 700; background: var(--cs); color: var(--c); white-space: nowrap; }
+  .c { color: var(--c); font-weight: 700; }
+
+  .legend { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  table { border-collapse: collapse; width: 100%; font-size: 23px; }
+  th, td { text-align: left; padding: 13px 16px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+  th { font-size: 15px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  td code, li code, p code { font-size: .86em; }
+
+  code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; background: var(--code-bg); padding: 1px 7px; border-radius: 6px; }
+  pre.code {
+    margin: 0; background: var(--code-bg); border: 1px solid var(--line); border-radius: 14px;
+    padding: 20px 0; font: 21px/1.55 ui-monospace, "SF Mono", Menlo, Consolas, monospace; overflow: hidden; white-space: pre;
+  }
+  pre.code.sm { font-size: 18px; }
+  pre.code .ln { display: block; padding: 0 24px; }
+  pre.code .ln.hl { background: var(--hl); box-shadow: inset 5px 0 0 var(--warn); }
+  pre.code .k { color: var(--tok-k); }
+  pre.code .s { color: var(--tok-s); }
+  pre.code .c { color: var(--tok-c); font-weight: 400; font-style: italic; }
+  pre.code .t { color: var(--tok-t); }
+  pre.code .n { color: var(--tok-n); }
+
+  .bad  { color: var(--bad); font-weight: 700; }
+  .good { color: var(--ok); font-weight: 700; }
+
+  /* Diagrams */
+  svg { display: block; width: 100%; height: auto; overflow: visible; }
+  svg text { fill: var(--fg); font-family: inherit; }
+  svg text.mono { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+  svg .muted { fill: var(--muted); }
+  svg .box { fill: var(--surface); stroke: var(--line); stroke-width: 1.5; }
+  svg .box-comp { fill: var(--comp-soft); stroke: var(--comp); stroke-width: 2; }
+  svg .box-state { fill: var(--state-soft); stroke: var(--state); stroke-width: 2; }
+  svg .box-effect { fill: var(--effect-soft); stroke: var(--effect); stroke-width: 2; }
+  svg .box-event { fill: var(--event-soft); stroke: var(--event); stroke-width: 2; }
+  svg .box-props { fill: var(--props-soft); stroke: var(--props); stroke-width: 2; }
+  svg .t-comp { fill: var(--comp); } svg .t-props { fill: var(--props); } svg .t-state { fill: var(--state); }
+  svg .t-effect { fill: var(--effect); } svg .t-event { fill: var(--event); }
+  svg .ln-props { stroke: var(--props); stroke-width: 2.5; fill: none; }
+  svg .ln-muted { stroke: var(--muted); stroke-width: 2; fill: none; }
+  svg .ln-dash { stroke: var(--muted); stroke-width: 2; fill: none; stroke-dasharray: 6 6; }
+  svg .ln-life { stroke: var(--line); stroke-width: 2; stroke-dasharray: 4 6; }
+
+  /* Flow chips: render → effect → cleanup */
+  .flow { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .flow .step { padding: 12px 20px; border-radius: 14px; background: var(--cs, var(--surface)); color: var(--c, var(--fg)); font-weight: 700; font-size: 22px; border: 1px solid var(--line); }
+  .flow .arrow { color: var(--muted); font-size: 26px; }
+
+  .dot { display: inline-block; width: 26px; height: 26px; border-radius: 50%; border: 2.5px solid var(--effect); vertical-align: middle; }
+  .dot.on { background: var(--effect); }
+
+  .num { display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--fg); color: var(--stage); font-weight: 800; font-size: 20px; flex: none; }
+  .steps { display: grid; gap: 22px; }
+  .steps > div { display: flex; gap: 18px; align-items: center; }
+
+  .section-slide { justify-content: center; }
+  .section-slide .bignum { font-size: 130px; font-weight: 800; line-height: 1; color: var(--c, var(--muted)); }
+  .section-slide h1 { font-size: 76px; margin: 12px 0 20px; }
+
+  .myth { display: grid; grid-template-columns: 1fr 1fr; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; font-size: 24px; }
+  .myth > div { padding: 20px 24px; border-bottom: 1px solid var(--line); }
+  .myth > div:nth-child(odd) { background: var(--event-soft); }
+  .myth > div:nth-child(even) { background: var(--props-soft); }
+  .myth > div:nth-last-child(-n+2) { border-bottom: 0; }
+
+  .qs { font-size: 28px; }
+  .qs li { margin: 18px 0; }
+
+  /* Controls */
+  #bar { position: fixed; right: 16px; bottom: 12px; display: flex; gap: 8px; align-items: center; z-index: 6; font-size: 14px; color: var(--muted); }
+  #bar button { font: inherit; color: var(--fg); background: var(--stage); border: 1px solid var(--line); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+  #bar button:hover { border-color: var(--muted); }
+  #progress { position: fixed; left: 0; top: 0; height: 4px; background: var(--comp); transition: width .2s; z-index: 6; }
+  .footer { position: absolute; left: 80px; bottom: 24px; font-size: 14px; color: var(--muted); letter-spacing: .04em; }
+
+  @media print {
+    @page { size: 1280px 720px; margin: 0; }
+    body { overflow: visible; background: none; }
+    #viewport { position: static; display: block; }
+    #stage { transform: none !important; width: auto; height: auto; }
+    .slide { display: flex !important; position: relative; width: 1280px; height: 720px; break-after: page; border-radius: 0; box-shadow: none; }
+    #bar, #progress { display: none !important; }
+  }
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<div id="viewport"><div id="stage">
+
+<!-- ============================== INTRO ============================== -->
+
+<section class="slide" style="justify-content:center">
+  <div class="kicker">FED25 · JavaScript frameworks · Before lecture 11</div>
+  <h1>React so far</h1>
+  <p class="lead muted" style="margin-top:18px">Lectures 1–10, explained with your own puns client</p>
+  <div class="legend" style="margin-top:48px">
+    <span class="chip comp">Component</span>
+    <span class="chip props">Props</span>
+    <span class="chip state">State</span>
+    <span class="chip event">Event handler</span>
+    <span class="chip effect">Effect</span>
+  </div>
+  <p class="small muted mt">One colour per concept, on every slide</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">Where are we?</div>
+  <h2>Ten lectures, four questions</h2>
+  <div class="cols-4">
+    <div class="card comp"><h3>What's on the screen?</h3><p class="muted">Lectures 1, 3, 5</p></div>
+    <div class="card state"><h3>How does it change?</h3><p class="muted">Lectures 2, 3, 4</p></div>
+    <div class="card effect"><h3>How do we talk to an API?</h3><p class="muted">Lectures 9, 10</p></div>
+    <div class="card props"><h3>Which page are we on?</h3><p class="muted">Today: lecture 11</p></div>
+  </div>
+  <p class="lead mt-auto"><b>Feeling lost is normal.</b> It's a lot of new words, but they rest on a few ideas.</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">Keep them apart</div>
+  <h2>Five words</h2>
+  <table>
+    <tr><td style="width:240px"><span class="chip comp">Component</span></td><td>A function that returns JSX</td><td class="muted"><code>PunItem</code></td></tr>
+    <tr><td><span class="chip props">Props</span></td><td>Input from the parent. Read-only</td><td class="muted"><code>pun</code></td></tr>
+    <tr><td><span class="chip state">State</span></td><td>Memory that survives re-renders</td><td class="muted"><code>puns</code></td></tr>
+    <tr><td><span class="chip event">Event handler</span></td><td>Runs when the user does something</td><td class="muted"><code>deletePun</code></td></tr>
+    <tr><td><span class="chip effect">Effect</span></td><td>Runs after a render, to talk to the outside</td><td class="muted">fetching the puns</td></tr>
+  </table>
+</section>
+
+<section class="slide">
+  <div class="kicker">Your puns client v2</div>
+  <h2>You have used all five</h2>
+  <svg style="max-height:470px" viewBox="0 0 1120 470" role="img" aria-label="Component tree: App passes category and categories to PunList. PunList passes props to PunForm, PunOfTheMoment and PunItem. PunForm and PunItem call functions from PunList.">
+    <defs>
+      <marker id="arr-props" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="var(--props)"/></marker>
+    </defs>
+    <rect class="box-comp" x="380" y="4" width="360" height="96" rx="14"/>
+    <text x="560" y="42" text-anchor="middle" font-size="28" font-weight="700" class="t-comp">App</text>
+    <text x="560" y="78" text-anchor="middle" font-size="20" class="t-state">state: categories, category</text>
+    <line class="ln-props" x1="560" y1="100" x2="560" y2="168" marker-end="url(#arr-props)"/>
+    <text x="578" y="142" font-size="20" class="t-props">props: category, categories</text>
+    <rect class="box-comp" x="330" y="172" width="460" height="104" rx="14"/>
+    <text x="560" y="210" text-anchor="middle" font-size="28" font-weight="700" class="t-comp">PunList</text>
+    <text x="560" y="240" text-anchor="middle" font-size="20" class="t-state">state: puns, message</text>
+    <text x="560" y="266" text-anchor="middle" font-size="20" class="t-effect">effect: GET puns</text>
+    <path class="ln-props" d="M560 276 V310 M180 310 H940"/>
+    <path class="ln-props" d="M180 310 V352" marker-end="url(#arr-props)"/>
+    <path class="ln-props" d="M560 310 V352" marker-end="url(#arr-props)"/>
+    <path class="ln-props" d="M940 310 V352" marker-end="url(#arr-props)"/>
+    <rect class="box-comp" x="20" y="356" width="320" height="110" rx="14"/>
+    <text x="180" y="392" text-anchor="middle" font-size="25" font-weight="700" class="t-comp">PunForm</text>
+    <text x="180" y="422" text-anchor="middle" font-size="19" class="t-props">gets addPun</text>
+    <text x="180" y="450" text-anchor="middle" font-size="19" class="t-event">calls addPun() ↑</text>
+    <rect class="box-comp" x="400" y="356" width="320" height="110" rx="14"/>
+    <text x="560" y="392" text-anchor="middle" font-size="25" font-weight="700" class="t-comp">PunOfTheMoment</text>
+    <text x="560" y="422" text-anchor="middle" font-size="19" class="t-props">gets puns</text>
+    <text x="560" y="450" text-anchor="middle" font-size="19" class="t-effect">effect: a timer</text>
+    <rect class="box-comp" x="780" y="356" width="320" height="110" rx="14"/>
+    <text x="940" y="392" text-anchor="middle" font-size="25" font-weight="700" class="t-comp">PunItem × many</text>
+    <text x="940" y="422" text-anchor="middle" font-size="19" class="t-props">gets pun, deletePun</text>
+    <text x="940" y="450" text-anchor="middle" font-size="19" class="t-event">calls deletePun() ↑</text>
+  </svg>
+</section>
+
+<!-- ============================== COMPONENTS & PROPS ============================== -->
+
+<section class="slide section-slide comp">
+  <div class="bignum">1</div>
+  <h1>Components and props</h1>
+  <p class="lead muted">What's on the screen, and how data gets there</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">Lecture 1 · Components</div>
+  <h2>A component is a function that returns JSX</h2>
+  <div class="cols-wide">
+    <script type="text/x-code">
+      const PunItem = ({ pun }: PunItemProps) => {  //!
+        return (                                   //!
+          <li className="pun">
+            <p>{pun.content}</p>
+          </li>
+        )
+      }
+
+      export default PunItem
+    </script>
+    <ul>
+      <li>Name starts with a <b>capital letter</b></li>
+      <li>Props <b>in</b>, JSX <b>out</b></li>
+      <li><code>{ }</code> = "here comes JavaScript"</li>
+    </ul>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Lectures 1 + 4 · Props</div>
+  <h2>The parent sends, the child receives</h2>
+  <div class="cols">
+    <div>
+      <h3 class="c props">PunList sends</h3>
+      <script type="text/x-code">
+        <PunItem
+          pun={pun}              //!
+          deletePun={deletePun}  //!
+        />
+      </script>
+    </div>
+    <div>
+      <h3 class="c props">PunItem receives</h3>
+      <script type="text/x-code">
+        const PunItem = ({
+          pun,                   //!
+          deletePun,             //!
+        }: PunItemProps) => {
+          ...
+        }
+      </script>
+    </div>
+  </div>
+  <p class="lead mt-auto">Props are <b>read-only</b>. A child can't change them, but it can <b>call a function</b> it got from the parent.</p>
+</section>
+
+<!-- ============================== STATE ============================== -->
+
+<section class="slide section-slide state">
+  <div class="bignum">2</div>
+  <h1>State and events</h1>
+  <p class="lead muted">How the screen changes</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">Lecture 2 · useState</div>
+  <h2>useState: memory for your component</h2>
+  <svg viewBox="0 0 1120 240" role="img" aria-label="const [puns, setPuns] = useState of Pun array, starting as an empty array">
+    <text x="560" y="90" text-anchor="middle" font-size="40" class="mono">
+      <tspan class="t-comp">const</tspan> [<tspan class="t-state" font-weight="700">puns</tspan>, <tspan class="t-event" font-weight="700">setPuns</tspan>] = <tspan class="t-comp">useState</tspan>&lt;<tspan class="t-props">Pun[]</tspan>&gt;(<tspan class="t-effect" font-weight="700">[]</tspan>)
+    </text>
+    <path class="ln-muted" d="M260 110 V150"/><text x="260" y="182" text-anchor="middle" font-size="22" class="t-state">the value now</text>
+    <path class="ln-muted" d="M440 110 V200"/><text x="440" y="232" text-anchor="middle" font-size="22" class="t-event">changes it + re-renders</text>
+    <path class="ln-muted" d="M896 110 V150"/><text x="896" y="182" text-anchor="middle" font-size="22" class="t-props">what it holds</text>
+    <path class="ln-muted" d="M1028 110 V200"/><text x="1100" y="232" text-anchor="end" font-size="22" class="t-effect">start value</text>
+  </svg>
+  <p class="lead mt-auto">Calling the setter tells React: <b>"render me again"</b>.</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">Lecture 2 · The most common surprise</div>
+  <h2>State is a snapshot</h2>
+  <div class="cols-wide">
+    <script type="text/x-code">
+      const [count, setCount] = useState(0)
+
+      const handleClick = () => {
+        setCount(count + 1)
+        console.log(count)  // 0, not 1!   //!
+      }
+    </script>
+    <p class="lead">The new value arrives in the <b>next</b> render, not on the next line.</p>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Lectures 3 + 10 · Arrays in state</div>
+  <h2>Don't change the array. Make a new one</h2>
+  <table>
+    <tr><th>In PunList</th><th>New array</th></tr>
+    <tr><td><b>Add</b> a pun (POST)</td><td><code>setPuns([...puns, data])</code></td></tr>
+    <tr><td><b>Remove</b> a pun (DELETE)</td><td><code>setPuns(puns.filter(...))</code></td></tr>
+    <tr><td><b>Replace</b> a pun (PATCH)</td><td><code>setPuns(puns.map(...))</code></td></tr>
+  </table>
+  <p class="lead mt-auto"><span class="bad">❌ puns.push(data)</span> changes the old array. React sees the same array, and nothing updates.</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">Lecture 4 · Where should it live?</div>
+  <h2>Props, state, or just a value?</h2>
+  <svg style="max-height:420px" viewBox="0 0 1000 390" role="img" aria-label="Decision chart: from the parent means props. Can be calculated means a const in the body. Otherwise state in the closest common parent.">
+    <defs><marker id="arr-m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker></defs>
+    <rect class="box" x="0" y="0" width="540" height="84" rx="14"/><text x="270" y="52" text-anchor="middle" font-size="26">Does it come from the parent?</text>
+    <path class="ln-muted" d="M540 42 H640" marker-end="url(#arr-m)"/><text x="590" y="30" text-anchor="middle" font-size="19" class="muted">yes</text>
+    <rect class="box-props" x="646" y="7" width="354" height="70" rx="14"/><text x="823" y="52" text-anchor="middle" font-size="26" class="t-props" font-weight="700">props</text>
+    <path class="ln-muted" d="M270 84 V138" marker-end="url(#arr-m)"/><text x="286" y="118" font-size="19" class="muted">no</text>
+
+    <rect class="box" x="0" y="142" width="540" height="84" rx="14"/><text x="270" y="194" text-anchor="middle" font-size="26">Can you calculate it?</text>
+    <path class="ln-muted" d="M540 184 H640" marker-end="url(#arr-m)"/><text x="590" y="172" text-anchor="middle" font-size="19" class="muted">yes</text>
+    <rect class="box-comp" x="646" y="149" width="354" height="70" rx="14"/><text x="823" y="194" text-anchor="middle" font-size="24" class="t-comp" font-weight="700">a const in the body</text>
+    <path class="ln-muted" d="M270 226 V280" marker-end="url(#arr-m)"/><text x="286" y="260" font-size="19" class="muted">no</text>
+
+    <rect class="box-state" x="0" y="284" width="1000" height="100" rx="14"/>
+    <text x="500" y="326" text-anchor="middle" font-size="28" class="t-state" font-weight="700">state</text>
+    <text x="500" y="362" text-anchor="middle" font-size="22">in the closest parent of everyone who needs it</text>
+  </svg>
+</section>
+
+<section class="slide">
+  <div class="kicker">The chart, in your puns client</div>
+  <h2>Where does it live?</h2>
+  <table>
+    <tr><td><code>pun</code> in PunItem</td><td><span class="chip props">props</span></td><td class="muted small">PunList sends it</td></tr>
+    <tr><td><code>puns.length</code></td><td><span class="chip comp">a value</span></td><td class="muted small">calculated, no state needed</td></tr>
+    <tr><td><code>puns</code></td><td><span class="chip state">state in PunList</span></td><td class="muted small">it changes over time</td></tr>
+    <tr><td><code>category</code></td><td><span class="chip state">state in App</span></td><td class="muted small">the &lt;select&gt; <b>and</b> PunList need it</td></tr>
+  </table>
+</section>
+
+<section class="slide">
+  <div class="kicker">Lecture 4 · Controlled forms</div>
+  <h2>A controlled input is a loop</h2>
+  <div class="cols-wide" style="grid-template-columns:0.8fr 1.2fr">
+    <svg viewBox="0 0 640 380" role="img" aria-label="Loop: the user types, onChange runs, setContent updates state, React re-renders, the input shows the value from state">
+      <defs><marker id="arr-l" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker></defs>
+      <rect class="box" x="200" y="0" width="240" height="70" rx="14"/><text x="320" y="44" text-anchor="middle" font-size="24">The user types</text>
+      <rect class="box-event" x="400" y="150" width="240" height="80" rx="14"/><text x="520" y="198" text-anchor="middle" font-size="24" class="t-event" font-weight="700">onChange</text>
+      <rect class="box-state" x="200" y="300" width="240" height="76" rx="14"/><text x="320" y="346" text-anchor="middle" font-size="24" class="t-state" font-weight="700">setContent</text>
+      <rect class="box-comp" x="0" y="150" width="240" height="80" rx="14"/><text x="120" y="198" text-anchor="middle" font-size="24" class="t-comp" font-weight="700">re-render</text>
+      <path class="ln-muted" d="M440 50 Q515 70 520 144" marker-end="url(#arr-l)"/>
+      <path class="ln-muted" d="M520 232 Q515 320 446 336" marker-end="url(#arr-l)"/>
+      <path class="ln-muted" d="M196 336 Q125 320 120 236" marker-end="url(#arr-l)"/>
+      <path class="ln-muted" d="M120 146 Q125 70 194 50" marker-end="url(#arr-l)"/>
+    </svg>
+    <div>
+      <script type="text/x-code" data-size="sm">
+        const [content, setContent] = useState('')
+
+        <input
+          value={content}                                 //!
+          onChange={(e) => setContent(e.target.value)}    //!
+        />
+      </script>
+      <p class="lead mt">The input <b>shows</b> state. Emptying it: <code>setContent('')</code></p>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Lecture 2 · Event handlers</div>
+  <h2>Pass a function. Don't call it</h2>
+  <script type="text/x-code">
+    // ✅ runs when the user clicks
+    <button onClick={() => deletePun(pun)}>Delete</button>
+
+    // ❌ runs during render, for every pun!
+    <button onClick={deletePun(pun)}>Delete</button>
+  </script>
+  <p class="lead mt-auto">The arrow function says: <b>"later, when clicked"</b>.</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">Lecture 3 · Lists</div>
+  <h2>A list from an array</h2>
+  <div class="cols-wide">
+    <script type="text/x-code">
+      {puns.map((pun) => (
+        <PunItem
+          key={pun._id}   //!
+          pun={pun}
+        />
+      ))}
+    </script>
+    <div>
+      <p class="lead"><code>key</code> tells React <b>which item is which</b> between renders.</p>
+      <p class="lead">Added, removed or moved? React keeps the right DOM element (and its state), and only changes what changed.</p>
+      <p class="lead muted">Use the <b>id</b>, not the index.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== RENDER & LIFECYCLE ============================== -->
+
+<section class="slide section-slide effect">
+  <div class="bignum">3</div>
+  <h1>Rendering and the lifecycle</h1>
+  <p class="lead muted">What happens when React "runs" your component</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">What is a render?</div>
+  <h2>Four steps, every time</h2>
+  <svg viewBox="0 0 1120 290" role="img" aria-label="Four steps: trigger, render, commit, effects. A setter call loops back to trigger.">
+    <defs><marker id="arr-r" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--muted)"/></marker></defs>
+    <rect class="box-state" x="0" y="10" width="245" height="130" rx="14"/>
+    <text x="122" y="62" text-anchor="middle" font-size="28" font-weight="700" class="t-state">1. Trigger</text>
+    <text x="122" y="100" text-anchor="middle" font-size="20">mount, or a setter</text>
+    <rect class="box-comp" x="291" y="10" width="245" height="130" rx="14"/>
+    <text x="413" y="62" text-anchor="middle" font-size="28" font-weight="700" class="t-comp">2. Render</text>
+    <text x="413" y="100" text-anchor="middle" font-size="20">React calls your function</text>
+    <rect class="box" x="582" y="10" width="245" height="130" rx="14"/>
+    <text x="704" y="62" text-anchor="middle" font-size="28" font-weight="700">3. Commit</text>
+    <text x="704" y="100" text-anchor="middle" font-size="20">the DOM is updated</text>
+    <rect class="box-effect" x="873" y="10" width="245" height="130" rx="14"/>
+    <text x="995" y="62" text-anchor="middle" font-size="28" font-weight="700" class="t-effect">4. Effects</text>
+    <text x="995" y="100" text-anchor="middle" font-size="20">useEffect runs</text>
+    <path class="ln-muted" d="M247 75 H285" marker-end="url(#arr-r)"/>
+    <path class="ln-muted" d="M538 75 H576" marker-end="url(#arr-r)"/>
+    <path class="ln-muted" d="M829 75 H867" marker-end="url(#arr-r)"/>
+    <path class="ln-dash" d="M995 142 V230 H122 V148" marker-end="url(#arr-r)"/>
+    <text x="560" y="270" text-anchor="middle" font-size="22" class="t-state">setPuns(data) → back to step 1</text>
+  </svg>
+  <p class="lead mt-auto"><b>"Render"</b> = React calls your component function. Not "draw".</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">Lecture 9 · The lifecycle</div>
+  <h2>Mount → update → unmount</h2>
+  <svg viewBox="0 0 1120 180" role="img" aria-label="Timeline: mount, update, update, unmount">
+    <line x1="40" y1="100" x2="1080" y2="100" class="ln-muted"/>
+    <circle cx="120" cy="100" r="20" fill="var(--props)"/>
+    <circle cx="430" cy="100" r="15" fill="var(--state)"/>
+    <circle cx="700" cy="100" r="15" fill="var(--state)"/>
+    <circle cx="1000" cy="100" r="20" fill="var(--event)"/>
+    <text x="120" y="58" text-anchor="middle" font-size="30" font-weight="700" class="t-props">Mount</text>
+    <text x="430" y="58" text-anchor="middle" font-size="28" font-weight="700" class="t-state">Update</text>
+    <text x="700" y="58" text-anchor="middle" font-size="28" font-weight="700" class="t-state">Update</text>
+    <text x="1000" y="58" text-anchor="middle" font-size="30" font-weight="700" class="t-event">Unmount</text>
+    <text x="120" y="152" text-anchor="middle" font-size="21">first time on screen</text>
+    <text x="565" y="152" text-anchor="middle" font-size="21">state or props changed</text>
+    <text x="1000" y="152" text-anchor="middle" font-size="21">removed from screen</text>
+  </svg>
+  <p class="lead mt-auto">Unmount = the <b>whole component</b> disappears. Not just a <code>&lt;div&gt;</code> inside it.</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">Why two requests in the Network tab?</div>
+  <h2>In development, React mounts twice</h2>
+  <div class="flow" style="margin-top:20px">
+    <span class="step props">mount</span><span class="arrow">→</span>
+    <span class="step event">unmount</span><span class="arrow">→</span>
+    <span class="step props">mount again</span>
+  </div>
+  <p class="lead mt">That's <code>&lt;StrictMode&gt;</code> in <code>main.tsx</code>, checking that your cleanup works.</p>
+  <p class="lead">Only in development. Not a bug in your code.</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">In old tutorials</div>
+  <h2>"Lifecycle methods" are the old way</h2>
+  <table>
+    <tr><th>Class component (old)</th><th>What we write</th></tr>
+    <tr><td><code>componentDidMount()</code></td><td><code>useEffect(..., [])</code></td></tr>
+    <tr><td><code>componentDidUpdate()</code></td><td><code>useEffect(..., [category])</code></td></tr>
+    <tr><td><code>componentWillUnmount()</code></td><td>the cleanup: <code>return () =&gt; ...</code></td></tr>
+  </table>
+  <p class="lead mt-auto muted">Good to recognise. You don't need to write them.</p>
+</section>
+
+<!-- ============================== useEffect ============================== -->
+
+<section class="slide section-slide effect">
+  <div class="bignum">4</div>
+  <h1>useEffect</h1>
+  <p class="lead muted">Talking to the world outside React</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">Lecture 9 · Why useEffect?</div>
+  <h2>fetch in the body = an endless loop</h2>
+  <div class="cols-wide">
+    <script type="text/x-code" data-size="sm">
+      const PunList = () => {
+        const [puns, setPuns] = useState<Pun[]>([])
+
+        fetch(API_URL)                     //!
+          .then((r) => r.json())
+          .then((data) => setPuns(data))   //!
+
+        return <ul>...</ul>
+      }
+    </script>
+    <div class="flow" style="flex-direction:column;align-items:flex-start;gap:6px">
+      <span class="step comp">render</span><span class="arrow">↓</span>
+      <span class="step effect">fetch</span><span class="arrow">↓</span>
+      <span class="step state">setPuns</span><span class="arrow">↓</span>
+      <span class="step comp">render… ♾️</span>
+    </div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Lecture 9 · The fix</div>
+  <h2>Put it in an effect</h2>
+  <script type="text/x-code">
+    useEffect(() => {
+      fetchPuns()         // runs AFTER the render
+    }, [category])        // ...and only when category changes   //!
+  </script>
+  <p class="lead mt">Other side effects: timers, <code>document.title</code>, <code>localStorage</code></p>
+</section>
+
+<section class="slide">
+  <div class="kicker">Lecture 9 · The dependency array</div>
+  <h2>When does my effect run?</h2>
+  <table>
+    <tr><th></th><th class="center">Mount</th><th class="center">message<br>changed</th><th class="center">category<br>changed</th></tr>
+    <tr><td><code>useEffect(fn)</code></td><td class="center"><span class="dot on"></span></td><td class="center"><span class="dot on"></span></td><td class="center"><span class="dot on"></span></td></tr>
+    <tr><td><code>useEffect(fn, [])</code></td><td class="center"><span class="dot on"></span></td><td class="center"><span class="dot"></span></td><td class="center"><span class="dot"></span></td></tr>
+    <tr><td><code>useEffect(fn, [category])</code></td><td class="center"><span class="dot on"></span></td><td class="center"><span class="dot"></span></td><td class="center"><span class="dot on"></span></td></tr>
+  </table>
+  <p class="lead mt-auto"><code>[]</code> = the categories in App · <code>[category]</code> = the puns in PunList</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">Lecture 9 · Cleanup</div>
+  <h2>Cleanup: tidy up after yourself</h2>
+  <div class="cols-wide">
+    <script type="text/x-code" data-size="sm">
+      // PunOfTheMoment
+      useEffect(() => {
+        const timerId = setInterval(() => {
+          setIndex(...)
+        }, 10_000)
+
+        return () => clearInterval(timerId)  //!
+      }, [count])
+    </script>
+    <div>
+      <p class="lead">The cleanup runs:</p>
+      <ul class="lead">
+        <li><b>before</b> the effect runs again</li>
+        <li>on <b>unmount</b></li>
+      </ul>
+    </div>
+  </div>
+  <p class="lead mt-auto muted">Without it: two timers, then three, then four…</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">The question behind many bugs</div>
+  <h2>Effect, event handler, or neither?</h2>
+  <table>
+    <tr><th>In the puns client</th><th>Where?</th><th>And the <span class="c state">state</span>?</th></tr>
+    <tr><td>Load the puns when the page shows</td><td><span class="chip effect">Effect</span></td><td><code>setPuns(data)</code></td></tr>
+    <tr><td>POST a pun on submit</td><td><span class="chip event">Event handler</span></td><td><code>setPuns([...puns, data])</code></td></tr>
+    <tr><td>DELETE a pun on click</td><td><span class="chip event">Event handler</span></td><td><code>setPuns(puns.filter(...))</code></td></tr>
+    <tr><td>Show "12 puns" above the list</td><td><span class="chip comp">Neither</span></td><td>reads it: <code>puns.length</code></td></tr>
+  </table>
+  <p class="lead mt-auto">Effects and handlers <b>change</b> <span class="c state">state</span>. Everything else just <b>reads</b> it.</p>
+</section>
+
+<!-- ============================== FETCH & REST ============================== -->
+
+<section class="slide section-slide props">
+  <div class="bignum">5</div>
+  <h1>Fetching and REST</h1>
+  <p class="lead muted">Talking to the Pun API</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">Lecture 9 · One request, step by step</div>
+  <h2>What happens when PunList loads</h2>
+  <svg style="max-height:460px" viewBox="0 0 1120 460" role="img" aria-label="Sequence diagram between PunList and the Pun API">
+    <defs><marker id="arr-s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--fg)"/></marker></defs>
+    <rect class="box-comp" x="80" y="0" width="220" height="56" rx="12"/><text x="190" y="36" text-anchor="middle" font-size="24" font-weight="700" class="t-comp">PunList</text>
+    <rect class="box-props" x="860" y="0" width="220" height="56" rx="12"/><text x="970" y="36" text-anchor="middle" font-size="24" font-weight="700" class="t-props">Pun API</text>
+    <line class="ln-life" x1="190" y1="56" x2="190" y2="455"/>
+    <line class="ln-life" x1="970" y1="56" x2="970" y2="455"/>
+
+    <text x="20" y="110" font-size="22" font-weight="700">1</text>
+    <rect class="box-comp" x="206" y="84" width="420" height="40" rx="10"/><text x="220" y="111" font-size="21">render: "Loading puns..."</text>
+
+    <text x="20" y="190" font-size="22" font-weight="700">2</text>
+    <line x1="190" y1="184" x2="962" y2="184" stroke="var(--fg)" stroke-width="2.5" marker-end="url(#arr-s)"/>
+    <text x="210" y="172" font-size="21" class="t-effect">effect: GET /api/puns?category=food</text>
+
+    <text x="20" y="270" font-size="22" font-weight="700">3</text>
+    <line x1="970" y1="264" x2="198" y2="264" stroke="var(--fg)" stroke-width="2.5" stroke-dasharray="8 7" marker-end="url(#arr-s)"/>
+    <text x="210" y="252" font-size="21">200 OK + JSON → response.json()</text>
+
+    <text x="20" y="350" font-size="22" font-weight="700">4</text>
+    <rect class="box-state" x="206" y="324" width="420" height="40" rx="10"/><text x="220" y="351" font-size="21">setPuns(data)</text>
+
+    <text x="20" y="430" font-size="22" font-weight="700">5</text>
+    <rect class="box-comp" x="206" y="404" width="420" height="40" rx="10"/><text x="220" y="431" font-size="21">render: shows the list</text>
+  </svg>
+</section>
+
+<section class="slide">
+  <div class="kicker">Lecture 9 · The code for that</div>
+  <h2>The fetch in PunList</h2>
+  <script type="text/x-code" data-size="sm">
+    useEffect(() => {
+      const fetchPuns = async () => {
+        setIsLoading(true)                           // 1. loading     //!
+        try {
+          const response = await fetch(url)          // 2. ask the API //!
+          const data: Pun[] = await response.json()  // 3. read JSON   //!
+          setPuns(data)                              // 4. into state  //!
+        } catch (err) {
+          setError('Could not load the puns')        // or: an error
+        } finally {
+          setIsLoading(false)                        // always: stop loading
+        }
+      }
+      fetchPuns()
+    }, [category])
+  </script>
+</section>
+
+<section class="slide">
+  <div class="kicker">Every request has three states</div>
+  <h2>Loading, error, data</h2>
+  <div class="cols-3">
+    <div class="card state"><h3>⏳ Loading</h3><p>Waiting for the answer</p></div>
+    <div class="card event"><h3>❌ Error</h3><p>Something went wrong</p></div>
+    <div class="card props"><h3>✅ Data</h3><p>Show it (or "No puns yet")</p></div>
+  </div>
+  <div class="mt">
+    <script type="text/x-code" data-size="sm">
+      if (isLoading) return <p>Loading puns...</p>
+      if (error) return <p className="error">{error}</p>
+      return <ul>...</ul>
+    </script>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Lecture 10 · REST</div>
+  <h2>The Pun API</h2>
+  <table>
+    <tr><th>Method</th><th>URL</th><th>Does</th></tr>
+    <tr><td><b>GET</b></td><td><code>/api/puns</code></td><td>get all puns</td></tr>
+    <tr><td><b>POST</b></td><td><code>/api/puns</code></td><td>create a pun</td></tr>
+    <tr><td><b>PATCH</b></td><td><code>/api/puns/:id</code></td><td>change a pun</td></tr>
+    <tr><td><b>DELETE</b></td><td><code>/api/puns/:id</code></td><td>delete a pun</td></tr>
+  </table>
+  <p class="lead mt-auto">The <b>URL</b> says <i>what</i>. The <b>method</b> says <i>what to do</i>.</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">Lecture 10 · The trap</div>
+  <h2>fetch does not throw on 404</h2>
+  <div class="cols-3">
+    <div class="card props"><h3>2xx</h3><p>It worked</p><p><code>response.ok</code> is <b>true</b></p></div>
+    <div class="card state"><h3>4xx / 5xx</h3><p>The server said no</p><p><code>response.ok</code> is <b>false</b></p></div>
+    <div class="card event"><h3>No answer</h3><p>Offline, CORS…</p><p>fetch <b>throws</b> → <code>catch</code></p></div>
+  </div>
+  <p class="lead mt-auto">A 404 is still an <b>answer</b>. You have to check it yourself.</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">Lecture 10 · So, after every write</div>
+  <h2>Check <code>response.ok</code></h2>
+  <script type="text/x-code">
+    const response = await fetch(...)
+    const data = await response.json()
+
+    if (!response.ok) {                  //!
+      setMessage(`❌ ${data.message}`)   // the API says why
+      return
+    }
+    // it worked
+  </script>
+</section>
+
+<section class="slide">
+  <div class="kicker">Lecture 10 · Writing data</div>
+  <h2>Anatomy of a POST</h2>
+  <div class="cols-wide">
+    <script type="text/x-code" data-size="sm">
+      fetch(API_URL, {
+        method: 'POST',                                    //!
+        headers: { 'Content-Type': 'application/json' },  //!
+        body: JSON.stringify({ content, category }),      //!
+      })
+    </script>
+    <div class="steps">
+      <div><span class="num">1</span><span><b>method:</b> what to do</span></div>
+      <div><span class="num">2</span><span><b>headers:</b> "this is JSON"</span></div>
+      <div><span class="num">3</span><span><b>body:</b> the data, as text</span></div>
+    </div>
+  </div>
+  <p class="lead mt-auto">Then use the pun the <b>server</b> sends back. It has the <code>_id</code>.</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">Lecture 10 on one page</div>
+  <h2>PunList v2: who does what</h2>
+  <div class="cols-4">
+    <div class="card state"><h3>State</h3><p><code>puns</code><br><code>message</code></p></div>
+    <div class="card effect"><h3>Effect</h3><p>GET</p></div>
+    <div class="card event"><h3>Handlers</h3><p>POST<br>PATCH<br>DELETE</p></div>
+    <div class="card props"><h3>Props</h3><p>handlers go down to PunForm and PunItem</p></div>
+  </div>
+  <p class="lead mt-auto center">Almost every concept from lectures 1–10 is in this one component.</p>
+</section>
+
+<section class="slide">
+  <div class="kicker">Follow one click</div>
+  <h2>What happens when you click Delete</h2>
+  <div class="steps lead">
+    <div><span class="num">1</span><span><span class="c event">PunItem</span> calls <code>deletePun(pun)</code>, a prop</span></div>
+    <div><span class="num">2</span><span><span class="c event">deletePun</span> in PunList sends <code>DELETE</code></span></div>
+    <div><span class="num">3</span><span><code>response.ok</code>? → <span class="c state">setPuns(puns.filter(...))</span></span></div>
+    <div><span class="num">4</span><span>React <span class="c comp">re-renders</span>: the pun is gone</span></div>
+  </div>
+</section>
+
+<!-- ============================== WRAP-UP ============================== -->
+
+<section class="slide">
+  <div class="kicker">Common mix-ups (1/2)</div>
+  <h2>Myth or fact?</h2>
+  <div class="myth">
+    <div>❌ <code>useEffect(fn)</code> runs once</div><div>✅ After <b>every</b> render. <code>[]</code> runs once</div>
+    <div>❌ After <code>setPuns(x)</code>, <code>puns</code> is new</div><div>✅ Only in the <b>next</b> render</div>
+    <div>❌ fetch throws on a 404</div><div>✅ Check <code>response.ok</code></div>
+    <div>❌ The POST needs a useEffect</div><div>✅ A click → an <b>event handler</b></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Common mix-ups (2/2)</div>
+  <h2>Myth or fact?</h2>
+  <div class="myth">
+    <div>❌ A count needs state</div><div>✅ Calculate it: <code>puns.length</code></div>
+    <div>❌ A child can change its props</div><div>✅ It calls a function from the parent</div>
+    <div>❌ Unmount = an element disappears</div><div>✅ The <b>whole component</b> is removed</div>
+    <div>❌ <code>key={index}</code> is fine</div><div>✅ Use the id: <code>key={pun._id}</code></div>
+  </div>
+</section>
+
+<section class="slide">
+  <div class="kicker">Self-check (1/2) · No laptop</div>
+  <h2>Can you answer these?</h2>
+  <ol class="qs">
+    <li>What's the difference between props and state?</li>
+    <li>Why doesn't <code>puns.push(pun)</code> update the screen?</li>
+    <li>When does an effect with <code>[category]</code> run?</li>
+    <li>When does a cleanup function run?</li>
+    <li>Why is the POST in a handler, not in an effect?</li>
+  </ol>
+</section>
+
+<section class="slide">
+  <div class="kicker">Self-check (2/2) · No laptop</div>
+  <h2>Can you answer these?</h2>
+  <ol class="qs" start="6">
+    <li>What does <code>fetch</code> do when the API answers 404?</li>
+    <li>After a POST, why use the pun the server sent back?</li>
+    <li>What is <code>key</code> for in a list?</li>
+    <li>Why does <code>category</code> live in App?</li>
+    <li>What happens with <code>onClick={deletePun(pun)}</code>?</li>
+  </ol>
+</section>
+
+<section class="slide">
+  <div class="kicker">Later today</div>
+  <h2>Loaders: the same fetch, in a new place</h2>
+  <div class="cols">
+    <div class="card effect">
+      <h3>Now: useEffect</h3>
+      <div class="flow" style="gap:8px">
+        <span class="step comp">render</span><span class="arrow">→</span><span class="step effect">fetch</span><span class="arrow">→</span><span class="step comp">render</span>
+      </div>
+      <p class="mt">First "Loading...", then the data</p>
+    </div>
+    <div class="card props">
+      <h3>Lecture 11: a loader</h3>
+      <div class="flow" style="gap:8px">
+        <span class="step effect">fetch</span><span class="arrow">→</span><span class="step comp">render</span>
+      </div>
+      <p class="mt">The data is there from the start</p>
+    </div>
+  </div>
+  <p class="lead mt-auto">fetch, <code>response.ok</code> and JSON stay the same. Only <b>where</b> the GET lives changes.</p>
+</section>
+
+<section class="slide" style="justify-content:center">
+  <div class="kicker">That's React so far</div>
+  <h1>Questions?</h1>
+  <div class="legend" style="margin-top:40px">
+    <span class="chip comp">Component</span>
+    <span class="chip props">Props</span>
+    <span class="chip state">State</span>
+    <span class="chip event">Event handler</span>
+    <span class="chip effect">Effect</span>
+  </div>
+  <p class="lead muted mt">Find each one in your own puns client.</p>
+</section>
+
+</div></div>
+
+<div id="bar">
+  <span id="counter"></span>
+  <button id="prev" aria-label="Previous slide">←</button>
+  <button id="next" aria-label="Next slide">→</button>
+  <button id="toggle-theme" aria-label="Toggle light and dark">◐</button>
+</div>
+
+<script>
+  // --- Code blocks: <script type="text/x-code"> → highlighted <pre>. A line ending in //! is highlighted
+  const KEYWORDS = 'const|let|return|if|else|async|await|function|export|default|import|from|type|try|catch|finally|new|true|false|null|undefined'
+  const TOKENS = new RegExp(
+    String.raw`(\/\/.*$)|('(?:[^'\\]|\\.)*'|"(?:[^"\\]|\\.)*"|` + '`(?:[^`\\\\]|\\\\.)*`' + String.raw`)|\b(${KEYWORDS})\b|(<\/?[A-Za-z][\w.]*)|\b(\d[\d_]*)\b`,
+    'g',
+  )
+  const escapeHtml = (text) => text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+
+  function highlightLine(line) {
+    let html = ''
+    let last = 0
+    for (const match of line.matchAll(TOKENS)) {
+      const cls = match[1] ? 'c' : match[2] ? 's' : match[3] ? 'k' : match[4] ? 't' : 'n'
+      html += escapeHtml(line.slice(last, match.index)) + `<span class="${cls}">${escapeHtml(match[0])}</span>`
+      last = match.index + match[0].length
+    }
+    return html + escapeHtml(line.slice(last))
+  }
+
+  document.querySelectorAll('script[type="text/x-code"]').forEach((block) => {
+    const lines = block.textContent.replace(/^\s*\n|\n\s*$/g, '').split('\n')
+    const indent = Math.min(...lines.filter((l) => l.trim()).map((l) => l.match(/^ */)[0].length))
+    const pre = document.createElement('pre')
+    pre.className = 'code' + (block.dataset.size === 'sm' ? ' sm' : '')
+    pre.innerHTML = lines
+      .map((raw) => {
+        let line = raw.slice(indent)
+        const marked = /\s*\/\/!\s*$/.test(line)
+        if (marked) line = line.replace(/\s*\/\/!\s*$/, '')
+        return `<span class="ln${marked ? ' hl' : ''}">${highlightLine(line) || ' '}</span>`
+      })
+      .join('')
+    block.replaceWith(pre)
+  })
+
+  // --- Navigation
+  const slides = [...document.querySelectorAll('.slide')]
+  const stage = document.getElementById('stage')
+  const counter = document.getElementById('counter')
+  const progress = document.getElementById('progress')
+  let current = 0
+
+  slides.forEach((slide, i) => {
+    const footer = document.createElement('div')
+    footer.className = 'footer'
+    footer.textContent = `React recap · ${i + 1} / ${slides.length}`
+    if (i > 0) slide.appendChild(footer)
+  })
+
+  function show(index) {
+    current = Math.max(0, Math.min(slides.length - 1, index))
+    slides.forEach((slide, i) => slide.classList.toggle('active', i === current))
+    counter.textContent = `${current + 1} / ${slides.length}`
+    progress.style.width = `${((current + 1) / slides.length) * 100}%`
+    history.replaceState(null, '', `#${current + 1}`)
+  }
+
+  function fit() {
+    const scale = Math.min(window.innerWidth / 1320, window.innerHeight / 760)
+    stage.style.transform = `scale(${scale})`
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return
+    if (['ArrowRight', 'PageDown', ' ', 'Enter'].includes(e.key)) { e.preventDefault(); show(current + 1) }
+    else if (['ArrowLeft', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); show(current - 1) }
+    else if (e.key === 'Home') show(0)
+    else if (e.key === 'End') show(slides.length - 1)
+    else if (e.key === 'f' || e.key === 'F') {
+      if (document.fullscreenElement) document.exitFullscreen()
+      else document.documentElement.requestFullscreen?.()
+    }
+  })
+  document.getElementById('prev').onclick = () => show(current - 1)
+  document.getElementById('next').onclick = () => show(current + 1)
+  document.getElementById('toggle-theme').onclick = () => {
+    const root = document.documentElement
+    const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches
+    root.dataset.theme = dark ? 'light' : 'dark'
+  }
+
+  window.addEventListener('resize', fit)
+  fit()
+  show((parseInt(location.hash.slice(1), 10) || 1) - 1)
+</script>
+</body>
+</html>

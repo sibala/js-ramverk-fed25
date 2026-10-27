@@ -23,6 +23,7 @@ import HooksExample from './components/11.UseEffectAndFetchingData/HooksExample'
 import PostList from './components/11.UseEffectAndFetchingData/PostList';
 import StatusCodes from './components/12.WritingData/StatusCodex';
 import NoteManager from './components/12.WritingData/NoteManager';
+import RouterExample from './components/13.ReactRouter/RouterExample';
 
 
 function App() {
@@ -39,8 +40,12 @@ function App() {
 
   return (
    <>
+    {/* ===== Lecture 10: 13.ReactRouter  ===== */}
+    
+
     {/* ===== Lecture 9: 12.WritingData  ===== */}
     <NoteManager />
+
     {/* <StatusCodes /> */}
 
 

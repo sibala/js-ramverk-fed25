@@ -1,10 +1,11 @@
 /**
- * A small REST API for the "16.WritingData" code-along in react-lectures, written in Express.
+ * A small REST API for the "16.WritingData" and "12.ReactRouter" code-alongs in react-lectures, written in Express.
  * The notes live in an array in memory: changes last until the server restarts.
  *
  * Start it in a second terminal:  npm run dev   (or "npm run api" from react-lectures-fed25)   → http://localhost:3001/notes
  *
  *   GET    /notes       → all notes
+ *   GET    /notes/:id   → one note                              → 200 note, or 404
  *   POST   /notes       → create a note  { "text": "..." }      → 201 { message, note }
  *   PATCH  /notes/:id   → change some fields  { "done": true }  → 200 { message, note }
  *   DELETE /notes/:id   → delete a note                         → 200 { message, note }
@@ -27,6 +28,17 @@ let nextId = 4
 
 app.get('/notes', (_req, res) => {
   res.json(notes)
+})
+
+// One note: the id in the URL is a string ("2"), so we turn it into a number
+app.get('/notes/:id', (req, res) => {
+  const note = notes.find(note => note.id === Number(req.params.id))
+  if (!note) {
+    res.status(404).json({ message: 'Note not found' })
+    return
+  }
+
+  res.json(note)
 })
 
 app.post('/notes', (req, res) => {
