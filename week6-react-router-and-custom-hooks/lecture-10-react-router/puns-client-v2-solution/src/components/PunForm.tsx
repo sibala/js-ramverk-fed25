@@ -1,4 +1,5 @@
 import { useState, type SubmitEvent } from "react";
+import CategoriesDropdown from "./CategoriesDropdown";
 
 type PunFormProps = {
   categories: string[]
@@ -27,16 +28,13 @@ const PunForm = ({categories, addPun}: PunFormProps) => {
         <textarea value={content} onChange={(e) => setContent(e.target.value)}/>
       </label>
       <div className="row">
-        <label htmlFor="category">Category 
-          <select id="category" value={category} onChange={(e) => setCategory(e.target.value)}>
-            <option value="">Choose a category</option>
-            {
-              categories.map(category => (
-                <option key={category} value={category}>{category}</option>
-              ))
-            }
-          </select>
-        </label>
+        <CategoriesDropdown 
+          categories={categories} 
+          category={category} 
+          onChange={setCategory} 
+          defaultOptions="Choose a category"
+          htmlId="categories"
+        />
         <button className="primary">Add pun</button>
       </div>
     </form>

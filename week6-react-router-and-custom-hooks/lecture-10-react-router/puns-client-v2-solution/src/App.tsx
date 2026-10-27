@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import PunList from './components/PunList'
+import CategoriesDropdown from './components/CategoriesDropdown';
 
 
 /**
@@ -70,16 +71,13 @@ function App() {
       {isLoading && <p>Loading categories...</p>}
       {error && <p className="error">Could not load the categories: ${error}</p>}
 
-      <label htmlFor="category-filter">Category 
-        <select id="category-filter" value={category} onChange={(e) => setCategory(e.target.value)}>
-          <option value="">All categories</option>
-          {
-            categories.map(category => (
-              <option key={category} value={category}>{category}</option>
-            ))
-          }
-        </select>
-      </label>
+      <CategoriesDropdown
+        categories={categories} 
+        category={category} 
+        onChange={setCategory} 
+        defaultOptions="All Categories"
+        htmlId="category-filter"
+      />
 
       <PunList category={category} categories={categories} />
     </main>

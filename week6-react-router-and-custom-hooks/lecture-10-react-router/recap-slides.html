@@ -198,9 +198,9 @@
 <!-- ============================== INTRO ============================== -->
 
 <section class="slide" style="justify-content:center">
-  <div class="kicker">FED25 · JavaScript frameworks · Before lecture 11</div>
+  <div class="kicker">FED25 · JavaScript frameworks · Before lecture 10</div>
   <h1>React so far</h1>
-  <p class="lead muted" style="margin-top:18px">Lectures 1–10, explained with your own puns client</p>
+  <p class="lead muted" style="margin-top:18px">Lectures 1–9, explained with your own puns client</p>
   <div class="legend" style="margin-top:48px">
     <span class="chip comp">Component</span>
     <span class="chip props">Props</span>
@@ -217,8 +217,8 @@
   <div class="cols-4">
     <div class="card comp"><h3>What's on the screen?</h3><p class="muted">Lectures 1, 3, 5</p></div>
     <div class="card state"><h3>How does it change?</h3><p class="muted">Lectures 2, 3, 4</p></div>
-    <div class="card effect"><h3>How do we talk to an API?</h3><p class="muted">Lectures 9, 10</p></div>
-    <div class="card props"><h3>Which page are we on?</h3><p class="muted">Today: lecture 11</p></div>
+    <div class="card effect"><h3>How do we talk to an API?</h3><p class="muted">Lectures 8, 9</p></div>
+    <div class="card props"><h3>Which page are we on?</h3><p class="muted">Today: lecture 10</p></div>
   </div>
   <p class="lead mt-auto"><b>Feeling lost is normal.</b> It's a lot of new words, but they rest on a few ideas.</p>
 </section>
@@ -369,7 +369,7 @@
 </section>
 
 <section class="slide">
-  <div class="kicker">Lectures 3 + 10 · Arrays in state</div>
+  <div class="kicker">Lectures 3 + 9 · Arrays in state</div>
   <h2>Don't change the array. Make a new one</h2>
   <table>
     <tr><th>In PunList</th><th>New array</th></tr>
@@ -561,7 +561,7 @@
 </section>
 
 <section class="slide">
-  <div class="kicker">Lecture 9 · Why useEffect?</div>
+  <div class="kicker">Lecture 8 · Why useEffect?</div>
   <h2>fetch in the body = an endless loop</h2>
   <div class="cols-wide">
     <script type="text/x-code" data-size="sm">
@@ -585,7 +585,7 @@
 </section>
 
 <section class="slide">
-  <div class="kicker">Lecture 9 · The fix</div>
+  <div class="kicker">Lecture 8 · The fix</div>
   <h2>Put it in an effect</h2>
   <script type="text/x-code">
     useEffect(() => {
@@ -654,7 +654,7 @@
 </section>
 
 <section class="slide">
-  <div class="kicker">Lecture 9 · One request, step by step</div>
+  <div class="kicker">Lecture 8 · One request, step by step</div>
   <h2>What happens when PunList loads</h2>
   <svg style="max-height:460px" viewBox="0 0 1120 460" role="img" aria-label="Sequence diagram between PunList and the Pun API">
     <defs><marker id="arr-s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="var(--fg)"/></marker></defs>
@@ -683,7 +683,7 @@
 </section>
 
 <section class="slide">
-  <div class="kicker">Lecture 9 · The code for that</div>
+  <div class="kicker">Lecture 8 · The code for that</div>
   <h2>The fetch in PunList</h2>
   <script type="text/x-code" data-size="sm">
     useEffect(() => {
@@ -722,7 +722,7 @@
 </section>
 
 <section class="slide">
-  <div class="kicker">Lecture 10 · REST</div>
+  <div class="kicker">Lecture 9 · REST</div>
   <h2>The Pun API</h2>
   <table>
     <tr><th>Method</th><th>URL</th><th>Does</th></tr>
@@ -735,7 +735,7 @@
 </section>
 
 <section class="slide">
-  <div class="kicker">Lecture 10 · The trap</div>
+  <div class="kicker">Lecture 9 · The trap</div>
   <h2>fetch does not throw on 404</h2>
   <div class="cols-3">
     <div class="card props"><h3>2xx</h3><p>It worked</p><p><code>response.ok</code> is <b>true</b></p></div>
@@ -746,7 +746,7 @@
 </section>
 
 <section class="slide">
-  <div class="kicker">Lecture 10 · So, after every write</div>
+  <div class="kicker">Lecture 9 · So, after every write</div>
   <h2>Check <code>response.ok</code></h2>
   <script type="text/x-code">
     const response = await fetch(...)
@@ -761,7 +761,7 @@
 </section>
 
 <section class="slide">
-  <div class="kicker">Lecture 10 · Writing data</div>
+  <div class="kicker">Lecture 9 · Writing data</div>
   <h2>Anatomy of a POST</h2>
   <div class="cols-wide">
     <script type="text/x-code" data-size="sm">
@@ -781,7 +781,7 @@
 </section>
 
 <section class="slide">
-  <div class="kicker">Lecture 10 on one page</div>
+  <div class="kicker">Lecture 9 on one page</div>
   <h2>PunList v2: who does what</h2>
   <div class="cols-4">
     <div class="card state"><h3>State</h3><p><code>puns</code><br><code>message</code></p></div>
@@ -789,7 +789,7 @@
     <div class="card event"><h3>Handlers</h3><p>POST<br>PATCH<br>DELETE</p></div>
     <div class="card props"><h3>Props</h3><p>handlers go down to PunForm and PunItem</p></div>
   </div>
-  <p class="lead mt-auto center">Almost every concept from lectures 1–10 is in this one component.</p>
+  <p class="lead mt-auto center">Almost every concept from lectures 1–9 is in this one component.</p>
 </section>
 
 <section class="slide">
@@ -849,28 +849,6 @@
     <li>Why does <code>category</code> live in App?</li>
     <li>What happens with <code>onClick={deletePun(pun)}</code>?</li>
   </ol>
-</section>
-
-<section class="slide">
-  <div class="kicker">Later today</div>
-  <h2>Loaders: the same fetch, in a new place</h2>
-  <div class="cols">
-    <div class="card effect">
-      <h3>Now: useEffect</h3>
-      <div class="flow" style="gap:8px">
-        <span class="step comp">render</span><span class="arrow">→</span><span class="step effect">fetch</span><span class="arrow">→</span><span class="step comp">render</span>
-      </div>
-      <p class="mt">First "Loading...", then the data</p>
-    </div>
-    <div class="card props">
-      <h3>Lecture 11: a loader</h3>
-      <div class="flow" style="gap:8px">
-        <span class="step effect">fetch</span><span class="arrow">→</span><span class="step comp">render</span>
-      </div>
-      <p class="mt">The data is there from the start</p>
-    </div>
-  </div>
-  <p class="lead mt-auto">fetch, <code>response.ok</code> and JSON stay the same. Only <b>where</b> the GET lives changes.</p>
 </section>
 
 <section class="slide" style="justify-content:center">

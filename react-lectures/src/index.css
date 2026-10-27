@@ -13,15 +13,12 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
+a.active {
   font-weight: 500;
-  color: #8b91ff;
+  color: #343435;
+  text-decoration: underline;
 }
 
-.active {
-  font-weight: 500;
-  color: b;
-}
 
 body {
   margin: 0;
@@ -62,4 +59,27 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+
+#page-layout {
+  display: flex;
+  justify-content: center;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0;
+  border-top: 1px solid #eee;
 }

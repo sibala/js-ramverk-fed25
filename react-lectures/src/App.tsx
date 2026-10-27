@@ -41,10 +41,10 @@ function App() {
   return (
    <>
     {/* ===== Lecture 10: 13.ReactRouter  ===== */}
-    
+    <RouterExample />
 
     {/* ===== Lecture 9: 12.WritingData  ===== */}
-    <NoteManager />
+    {/* <NoteManager /> */}
 
     {/* <StatusCodes /> */}
 
