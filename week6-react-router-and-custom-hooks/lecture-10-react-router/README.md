@@ -87,12 +87,5 @@ Split the puns client into pages (list, detail, new, 404), load data with loader
 - [Navigating (React Router)](https://reactrouter.com/start/data/navigating)
 - [useParams](https://reactrouter.com/api/hooks/useParams)
 - [useNavigate](https://reactrouter.com/api/hooks/useNavigate)
-
-**Routing with data**
-
 - [Data loading (React Router)](https://reactrouter.com/start/data/data-loading)
-- [Pending UI (React Router)](https://reactrouter.com/start/data/pending-ui)
-- [useLoaderData](https://reactrouter.com/api/hooks/useLoaderData)
-- [useRouteError](https://reactrouter.com/api/hooks/useRouteError)
-- [useNavigation](https://reactrouter.com/api/hooks/useNavigation)
-- [useSearchParams](https://reactrouter.com/api/hooks/useSearchParams) (Part 6 of the exercise)
+
