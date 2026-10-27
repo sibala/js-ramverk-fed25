@@ -18,12 +18,6 @@ After this lecture you can:
 - handle unknown URLs with a 404 route, and an id that doesn't exist with a friendly message
 - navigate from code with `useNavigate`, e.g. after a form is submitted
 
-**Routing with data (an introduction)**
-
-- load a page's data with a **loader** that runs before the page renders, and read it with `useLoaderData`
-- show an error page with an `errorElement`
-- show a loading indicator while a loader runs (`useNavigation`)
-
 ## 1. Recap slides: all concepts so far
 
 Before anything new: a recap of every concept from lectures 1–10. Components, props, state, events, lists, forms, rendering, the lifecycle, `useEffect`, fetching and REST. Every concept is shown with code from **your puns client v2**, so you can see that you have already practised almost all of them.

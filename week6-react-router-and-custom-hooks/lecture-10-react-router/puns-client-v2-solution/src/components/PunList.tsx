@@ -7,10 +7,11 @@ import PunForm from "./PunForm";
 
 type PunListProps = {
   category: string
+  categories: string[]
 }
 
 // Part 3: fetch and show the puns in one category
-const PunList = ({category}: PunListProps) => {
+const PunList = ({category, categories}: PunListProps) => {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
   const [puns, setPuns] = useState<Pun[]>([])
@@ -37,13 +38,36 @@ const PunList = ({category}: PunListProps) => {
     fetchPuns()
   }, [category])
 
+
+   const addPun = async (content: string, category: string) => {
+      try {
+        const response = await fetch(`https://pun-api-with-auth.vercel.app/api/puns`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({content, category})
+        })
+        const data = await response.json()
+
+        if (!response.ok) {
+          setError(data.message)
+          return false
+        }
+        setPuns([...puns, data])
+        return true
+      } catch(error) {
+        console.log('error')
+        setError(error instanceof Error ? error.message : 'Unknown error')
+        return false
+      }
+    }
+
   return (
-    <>
+    <section style={{marginTop: '20px'}}>
 
       {isLoading && <p>Loading puns...</p>}
       {error && <p className="error">Could not load the puns: ${error}</p>}
 
-      <PunForm />
+      <PunForm categories={categories} addPun={addPun}/>
 
       {/* Lecture 9, part 4 */}
       <PunOfTheMoment puns={puns} />
@@ -55,7 +79,7 @@ const PunList = ({category}: PunListProps) => {
           )) 
         }
       </ul>
-    </>
+    </section>
   )
 }
 
