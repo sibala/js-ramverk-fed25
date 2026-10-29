@@ -1,7 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocalStorage } from "./useLocalStorage";
 
 const ThemeToggle = () => {
-  const [theme, setTheme] = useState('dark')
+  const [theme, setTheme] = useLocalStorage()
+
+
+  // Small exercise for the class during the break
+  // Ajsut useLocalStorage() so that it can take care of the state logic for the "name"-state, and not just the "theme"-state
+  const [name, setName] = useState(localStorage.getItem('name') ?? '')
+  useEffect(() => {
+    localStorage.setItem('name', name)
+  }, [name])
+
 
   const isDark = theme === 'dark'
   const themeStyle = {
@@ -18,11 +28,11 @@ const ThemeToggle = () => {
       </p>
       <button onClick={() => setTheme(isDark ? 'light' : 'dark')}>Toggle theme</button>
 
-      {/* <p>
+      <p>
         <label>
           Your name: <input value={name} onChange={(e) => setName(e.target.value)} />
         </label>
-      </p> */}
+      </p>
 
     </section>
   )
