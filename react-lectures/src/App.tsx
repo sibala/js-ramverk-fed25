@@ -43,8 +43,8 @@ function App() {
   return (
    <>
     {/* ===== Lecture 10: 13.ReactRouter  ===== */}
-    {/* <NoteManagerWithCustomHooks /> */}
-    <ThemeToggle />
+    <NoteManagerWithCustomHooks />
+    {/* <ThemeToggle /> */}
     
     {/* ===== Lecture 11: 14.ReactRouter  ===== */}
     {/* <RouterExample /> */}

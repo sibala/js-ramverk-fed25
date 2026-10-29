@@ -1,98 +1,17 @@
-import { useEffect, useState, type SubmitEvent } from 'react'
+import { useState, type SubmitEvent } from 'react'
+import { useNotes } from './useNotes';
 
-type Note = {
-  id: number
-  text: string
-  done: boolean
-}
 
 const NoteManagerWithCustomHooks = () => {
-  const [notes, setNotes] = useState<Note[]>([])
   const [text, setText] = useState('')
-  const [message, setMessage] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
+  const {notes, message, isLoading, addNote, toggleDone, deleteNote} = useNotes()
 
-  
-
-  useEffect(() => {
-    setIsLoading(true)
-    const fetchNotes = async () => {
-      try {
-        const response = await fetch('http://localhost:3001/notes')
-        const data = await response.json()
-        setNotes(data)
-      } catch {
-        setMessage('❌ Could not reach the API. Is it running?')
-      } finally {
-        setIsLoading(false)
-      }
-    }
-
-    fetchNotes()
-  }, [])
-
-  const addNote = async (e: SubmitEvent<HTMLFormElement>) => {
+  const handleAddForm = async (e: SubmitEvent<HTMLFormElement>) => {
     e.preventDefault()
-    try {
-
-      
-      const response = await fetch('http://localhost:3001/notes', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text }),
-      })
-      const data = await response.json()
-
-      if (!response.ok) {
-        setMessage(`❌ ${data.message}`)
-        return
-      }
-
-      setNotes([...notes, data.note])
-      setMessage(`✅ ${data.message}`)
-      setText('')
-    } catch {
-      setMessage('❌ Could not reach the API. Is it running?')
-    }
+    addNote(text)
+    setText('')
   }
 
-  const toggleDone = async (note: Note) => {
-    try {
-      const response = await fetch(`http://localhost:3001/notes/${note.id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ done: !note.done }),
-      })
-      const data = await response.json()
-
-      if (!response.ok) {
-        setMessage(`❌ ${data.message}`)
-        return
-      }
-      
-      setNotes(notes.map((n) => (n.id === note.id ? data.note : n)))
-      setMessage(`✅ ${data.message}`)
-    } catch {
-      setMessage('❌ Could not reach the API. Is it running?')
-    }
-  }
-
-  const deleteNote = async (note: Note) => {
-    try {
-      const response = await fetch(`http://localhost:3001/notes/${note.id}`, { method: 'DELETE' })
-      const data = await response.json()
-
-      if (!response.ok) {
-        setMessage(`❌ ${data.message}`)
-        return
-      }
-
-      setNotes(notes.filter((n) => n.id !== note.id))
-      setMessage(`✅ ${data.message}`)
-    } catch {
-      setMessage('❌ Could not reach the API. Is it running?')
-    }
-  }
 
   return (
     <section style={{ textAlign: 'left', maxWidth: 480, margin: '0 auto' }}>
@@ -100,7 +19,7 @@ const NoteManagerWithCustomHooks = () => {
       {message && <p role="status">{message}</p>}
       {isLoading && <p>Loading ...</p>}
 
-      <form onSubmit={addNote}>
+      <form onSubmit={handleAddForm}>
         <label htmlFor="note-text">New note </label>
         <input id="note-text" value={text} onChange={(e) => setText(e.target.value)} />
         <button>Add</button>

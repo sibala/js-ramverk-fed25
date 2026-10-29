@@ -24,7 +24,7 @@ In the app **`react-lectures`**, study `14.CustomHooks/`:
 
 ## 2. Exercise: Puns client v4
 
-[puns-client-v4-exercise](puns-client-v4-exercise.md)
+[puns-client-v4-exercises](puns-client-v4-exercises.md)
 
 A **refactoring** exercise: the app should look and work the same afterwards, with less code in the components. Write `useLocalStorage` + `usePuns`.
 
