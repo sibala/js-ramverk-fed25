@@ -14,7 +14,6 @@ After this lecture you can:
 - build a hook on top of another hook (`useNotes` on `useLocalStorage`)
 - cancel old requests with `AbortController`
 
-
 ## 1. Study the code
 
 In the app **`react-lectures`**, study `14.CustomHooks/`:
