@@ -1,6 +1,10 @@
 # Lecture 11 – Custom hooks
 
 ## Video links
+- [01 - ThemeToggle with useLocalStorage part 1](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F09%20JavaScript%20Ramverk%2FRecordings%2FJavaScript%20Ramverk%2D20261029%5F090734%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Eef22205e%2Db803%2D4aba%2D89f6%2D0dfaad13b2ad)(43m)
+- [02 - ThemeToggle with useLocalStorage part 2](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F09%20JavaScript%20Ramverk%2FRecordings%2FJavaScript%20Ramverk%2D20261029%5F101224%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Eba84be32%2Daebb%2D4898%2D91b0%2D2ac06f4b3e1b)(53m)
+- [03 - Refactor Notemanager to useNotes. Present Puns V4 exercises](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F09%20JavaScript%20Ramverk%2FRecordings%2FJavaScript%20Ramverk%2D20261029%5F112112%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2E25488a64%2D6f29%2D4e5d%2Dac0a%2Dcb7287ec446e)(41m)
+
 
 ## Goals
 
