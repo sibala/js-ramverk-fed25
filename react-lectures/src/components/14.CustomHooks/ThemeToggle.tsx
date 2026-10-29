@@ -1,16 +1,24 @@
-import { useEffect, useState } from "react";
+import { article } from "motion/react-client";
 import { useLocalStorage } from "./useLocalStorage";
 
+type NoteType = {
+  id: number,
+  text: string
+}
+
+
+const initialNotes: NoteType[] = [
+  {id: 1, text: 'Note 1'},
+  {id: 2, text: 'Note 2'},
+  {id: 3, text: 'Note 3'},
+]
+
 const ThemeToggle = () => {
-  const [theme, setTheme] = useLocalStorage()
+  const [theme, setTheme] = useLocalStorage<string>('theme', 'dark')
+  const [name, setName] = useLocalStorage<string>('name', '')
+  const [count, setCount] = useLocalStorage<Number>('count', 5)
+  const [notes, setNotes] = useLocalStorage<NoteType[]>('notes', initialNotes)
 
-
-  // Small exercise for the class during the break
-  // Ajsut useLocalStorage() so that it can take care of the state logic for the "name"-state, and not just the "theme"-state
-  const [name, setName] = useState(localStorage.getItem('name') ?? '')
-  useEffect(() => {
-    localStorage.setItem('name', name)
-  }, [name])
 
 
   const isDark = theme === 'dark'
@@ -33,6 +41,19 @@ const ThemeToggle = () => {
           Your name: <input value={name} onChange={(e) => setName(e.target.value)} />
         </label>
       </p>
+
+
+
+      <button onClick={() => {setCount((count as number) + 1)}}> Counter: {count as number}</button>
+
+ 
+      {
+        notes.map(note => 
+          <article key={note.id}>
+            <p>{note.text}</p>
+          </article>
+        )
+      } 
 
     </section>
   )

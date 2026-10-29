@@ -24,11 +24,11 @@ In the app **`react-lectures`**, study `14.CustomHooks/`:
 
 ## 2. Exercise: Puns client v4
 
-Folder: `puns-client-v4-exercise` 
+[puns-client-v4-exercise](puns-client-v4-exercise.md)
 
-A **refactoring** exercise: the app should look and work the same afterwards, with less code in the components. Write `useLocalStorage` + `usePuns`. All instructions are in `src/App.tsx`.
+A **refactoring** exercise: the app should look and work the same afterwards, with less code in the components. Write `useLocalStorage` + `usePuns`.
 
-## 4. Reading instructions
+## 3. Reading instructions
 
 - [Reusing logic with custom hooks](https://react.dev/learn/reusing-logic-with-custom-hooks)
 - [Rules of hooks](https://react.dev/reference/rules/rules-of-hooks)
