@@ -24,6 +24,8 @@ import PostList from './components/11.UseEffectAndFetchingData/PostList';
 import StatusCodes from './components/12.WritingData/StatusCodex';
 import NoteManager from './components/12.WritingData/NoteManager';
 import RouterExample from './components/13.ReactRouter/RouterExample';
+import ThemeToggle from './components/14.CustomHooks/ThemeToggle';
+import NoteManagerWithCustomHooks from './components/14.CustomHooks/NoteManagerWithCustomHooks';
 
 
 function App() {
@@ -41,7 +43,11 @@ function App() {
   return (
    <>
     {/* ===== Lecture 10: 13.ReactRouter  ===== */}
-    <RouterExample />
+    <NoteManagerWithCustomHooks />
+    {/* <ThemeToggle /> */}
+    
+    {/* ===== Lecture 11: 14.ReactRouter  ===== */}
+    {/* <RouterExample /> */}
 
     {/* ===== Lecture 9: 12.WritingData  ===== */}
     {/* <NoteManager /> */}
