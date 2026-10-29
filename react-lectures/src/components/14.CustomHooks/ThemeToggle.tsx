@@ -1,4 +1,3 @@
-import { article } from "motion/react-client";
 import { useLocalStorage } from "./useLocalStorage";
 
 type NoteType = {
