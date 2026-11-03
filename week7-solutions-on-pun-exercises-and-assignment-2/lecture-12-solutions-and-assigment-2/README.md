@@ -1,4 +1,4 @@
-# Lecture 7 - Pun client solutions and Assignment 2
+# Lecture 12 - Pun client solutions and Assignment 2
 
 ## Video links pre-recorded
 - [01 - puns-client-v3-solutions Part 1](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F09%20JavaScript%20Ramverk%2FRecordings%2FMeeting%20in%20Inspelning%2D20261102%5F215315%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Ef48bf1e2%2D2231%2D4121%2D92f6%2D08f9f6aa74be)(23m)
