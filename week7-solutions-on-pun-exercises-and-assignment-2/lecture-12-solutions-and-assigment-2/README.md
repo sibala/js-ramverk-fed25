@@ -11,5 +11,6 @@
 ## 1. Solution to the previous exercise
 - Go through `puns-client-v3-solution` from lecture 10. 
 
-## 2. Assignment 2 - coming soon within 1h
-<!-- - Start working on the assignment found in itslearning -->
+## 2. Assignment 2 - QuestLog
+- Start working on the QuestLog assignment found in itslearning:
+- [Pre-recorded presentation](https://medieinstitutet.sharepoint.com/sites/FED25D/_layouts/15/stream.aspx?id=%2Fsites%2FFED25D%2FDelade%20dokument%2F09%20JavaScript%20Ramverk%2FRecordings%2FMeeting%20in%20Inspelning%2D20261103%5F095254%2DMeeting%20Recording%2Emp4&referrer=StreamWebApp%2EWeb&referrerScenario=AddressBarCopied%2Eview%2Ebb959cca%2D8757%2D46bd%2D8070%2D8e2c4b764232)
