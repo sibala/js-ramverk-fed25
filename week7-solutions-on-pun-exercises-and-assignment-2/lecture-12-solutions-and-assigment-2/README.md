@@ -11,5 +11,5 @@
 ## 1. Solution to the previous exercise
 - Go through `puns-client-v3-solution` from lecture 10. 
 
-## 2. Assignment 2 - QuestLog
-- Start working on the QuestLog assignment found in itslearning
+## 2. Assignment 2 - coming soon
+<!-- - Start working on the assignment found in itslearning -->
