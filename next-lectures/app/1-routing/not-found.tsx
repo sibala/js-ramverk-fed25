@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-// Shown when notFound() is called below /1-routing. Unknown URLs get here via [...rest]/page.tsx
+// Shown when notFound() is called below /1-routing. Unknown URLs get here via [id]/page.tsx
 export default function NotFound() {
   return (
     <>

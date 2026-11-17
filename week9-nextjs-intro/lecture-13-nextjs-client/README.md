@@ -38,7 +38,11 @@ npm run dev     # http://localhost:3000
 **Exercise: My first Next.js app** (solution: `my-first-next-app-solution/`). Create your first Next.js project with `create-next-app`: three pages (Home, About, Contact), a layout with navigation, and a 404 page.
 
 
-## 3. Exercise coming soon
+## 3. Exercise: Puns client in Next.js
+
+`puns-client-next-exercise.md` (solution: `puns-client-next/`)
+
+Move your own `puns-client-v3-solution` from Vite + React Router to Next.js, against the same Pun API. The layout, the pages as folders, and the imports from `next/link` and `next/navigation`
 
 
 ## 4. Reading instructions
