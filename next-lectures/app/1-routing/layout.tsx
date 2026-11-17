@@ -1,4 +1,6 @@
 import Link from 'next/link'
+import { connection } from 'next/server'
+import { Suspense } from 'react'
 
 /**
  * A NESTED LAYOUT. It wraps everything under /1-routing, and it does NOT re-render
@@ -21,8 +23,8 @@ export default function RoutingLayout({ children }: LayoutProps<'/1-routing'>) {
         <Link href="/1-routing" className="font-medium hover:underline">
           Overview
         </Link>
-        <Link href="/1-routing/products" className="hover:underline">
-          Products
+        <Link href="/1-routing/puns" className="hover:underline">
+          Puns
         </Link>
         <Link href="/1-routing/slow" className="hover:underline">
           Slow page (loading.tsx)
@@ -30,9 +32,23 @@ export default function RoutingLayout({ children }: LayoutProps<'/1-routing'>) {
         <Link href="/1-routing/broken" className="hover:underline">
           Broken page (error.tsx)
         </Link>
-        <span className="ml-auto text-slate-500">Layout rendered at {new Date().toLocaleTimeString('sv-SE')}</span>
+        <span className="ml-auto text-slate-500">
+          <Suspense fallback="Layout rendered at …">
+            <RenderedAt />
+          </Suspense>
+        </span>
       </div>
       {children}
     </section>
   )
+}
+
+/**
+ * With cacheComponents on, Next prerenders a static shell. new Date() gives a different
+ * value every time, so it can't be part of that shell. connection() tells Next to wait
+ * for a real request, and <Suspense> marks the part that waits.
+ */
+async function RenderedAt() {
+  await connection() // nothing below this runs until a request comes in
+  return <>Layout rendered at {new Date().toLocaleTimeString('sv-SE')}</>
 }

@@ -1,15 +1,15 @@
-import { sleep } from '@/lib/products'
+import { connection } from 'next/server'
 
 /**
- * Without this, Next would render the page once at BUILD time (the 2 second wait would
- * happen there), and users would get instant HTML with no loading state at all.
- * We force it to render per request so we can see loading.tsx do its job.
+ * Without connection(), Next would prerender this page ahead of time (the 2 second wait
+ * would happen there), and users would get instant HTML with no loading state at all.
+ * connection() tells Next to wait for a real request, so we can see loading.tsx do its job.
  */
-export const dynamic = 'force-dynamic'
 
 // A Server Component can be async and await things (a database, an API, a slow function)
 export default async function SlowPage() {
-  await sleep(2000) // pretend the database is slow
+  await connection() // everything below runs per request
+  await new Promise((resolve) => setTimeout(resolve, 2000)) // pretend the database is slow
 
   return (
     <>

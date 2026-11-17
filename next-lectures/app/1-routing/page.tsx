@@ -15,10 +15,10 @@ export default function RoutingOverview() {
     ├── page.tsx              → /1-routing
     ├── loading.tsx           → shown while a page below is loading
     ├── error.tsx             → shown when a page below throws
-    └── products/
-        ├── page.tsx          → /1-routing/products
-        └── [slug]/
-            └── page.tsx      → /1-routing/products/mechanical-keyboard`}</pre>
+    └── puns/
+        ├── page.tsx          → /1-routing/puns
+        └── [id]/
+            └── page.tsx      → /1-routing/puns/6ad4a0b696a9800008d16881`}</pre>
 
       <h2 className="mt-6 text-xl font-semibold">Compare with React Router</h2>
       <ul className="mt-2 list-disc space-y-1 pl-6 text-slate-700">
