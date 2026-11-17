@@ -43,6 +43,7 @@ npm run dev     # http://localhost:3000
 
 ## 4. Reading instructions
 
+- [Get started with Next.js](https://nextjs.org/docs/app/getting-started/installation)
 - [Project structure (Next.js)](https://nextjs.org/docs/app/getting-started/project-structure)
 - [Layouts and pages (Next.js)](https://nextjs.org/docs/app/getting-started/layouts-and-pages)
 - [Linking and navigating (Next.js)](https://nextjs.org/docs/app/getting-started/linking-and-navigating)
