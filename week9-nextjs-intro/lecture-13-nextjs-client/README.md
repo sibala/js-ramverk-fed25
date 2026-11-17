@@ -35,7 +35,7 @@ npm run dev     # http://localhost:3000
   - `slow/page.tsx` + `loading.tsx`: the loading state
   - `broken/page.tsx` + `error.tsx`: the error boundary, and why `error.tsx` must be a Client Component
 
-**Exercise: My first Next.js app** (`my-first-next-app-exercise.md`, solution: `my-first-next-app-solution/`). Create your first Next.js project with `create-next-app`: three pages (Home, About, Contact), a layout with navigation, and a 404 page.
+**Exercise: My first Next.js app** (solution: `my-first-next-app-solution/`). Create your first Next.js project with `create-next-app`: three pages (Home, About, Contact), a layout with navigation, and a 404 page.
 
 
 ## 3. Exercise coming soon
