@@ -1,6 +1,6 @@
 # Exercise: Puns client in Next.js
 
-Move **your own** `puns-client-v3` (lecture 11) from Vite + React Router to Next.js. Against the same Pun API.
+Move **your own** `puns-client-v3-solutions` (lecture 12) from Vite + React Router to Next.js. Against the same Pun API.
 
 You have everything you need from `1-routing`, the exercise *My first Next.js app* and `1-routing/puns` (especially the two `page-example.tsx` files).
 

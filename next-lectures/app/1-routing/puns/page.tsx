@@ -23,6 +23,7 @@ export default async function PunsPage() {
 
   console.log(`Fetched ${puns.length} puns on the server`)
 
+  // http://localhost:3000/1-routing/puns/12312312423453453
   return (
     <>
       <h1 className="text-2xl font-bold">Puns list</h1>

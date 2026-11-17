@@ -369,6 +369,40 @@ export default async function GamesPage() {
 
 ---
 
+## Static or dynamic?
+
+A Server Component runs on the server, but **when**?
+
+| | When | `npm run build` shows |
+|---|---|---|
+| **Static** | **once**, at `npm run build` | `○` |
+| **Dynamic** | on **every** request | `ƒ` |
+
+Both are SSR: the browser gets finished HTML. CSR is something else: the code runs in the **browser**
+
+> A page is static, unless it reads something from the request, or you say otherwise
+
+---
+
+## What makes a page dynamic?
+
+| Makes it dynamic | Example |
+|---|---|
+| `await connection()` | "wait for a real request" |
+| `cookies()`, `headers()` | reading the login cookie |
+| the `searchParams` prop | `/puns?category=science` |
+| a `[id]` route without `generateStaticParams` | Next can't know every id ahead of time |
+
+A plain `fetch(url)` is **not** enough: it runs once at build, and new puns don't show up
+
+```tsx
+export default async function PunsPage() {
+  await connection()   // fetch the puns on every visit
+  const response = await fetch(API_URL)
+```
+
+---
+
 # 5. Your pun app, in Next.js
 
 ---
@@ -422,6 +456,7 @@ Lecture 18: the Pun API moves **into** the project
 
 ## Next
 
-- Create an app: `npx create-next-app@latest`
-- Code-along: `puns-client-next`, then `next-lectures/app/1-routing` and `app/2-server-vs-client`
-- Exercise: **Board game library**
+1. Code-along: `next-lectures-fsu/app/1-routing`
+2. Exercise: **My first Next.js app**, with `npx create-next-app@16.3.6 my-first-next-app --yes`
+3. Code-along: `1-routing/puns`, the puns from the API and one page per pun
+4. Exercise: **Puns client in Next.js**, your own v3 in Next.js
