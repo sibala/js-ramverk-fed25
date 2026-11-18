@@ -1,4 +1,4 @@
-# Lecture 17 – Next.js intro: App Router, layouts and Server Components
+# Lecture 13 – Next.js intro: App Router, layouts and Server Components
 
 
 ## Video links
