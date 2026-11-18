@@ -456,7 +456,7 @@ Lecture 18: the Pun API moves **into** the project
 
 ## Next
 
-1. Code-along: `next-lectures-fsu/app/1-routing`
+1. Code-along: `next-lectures/app/1-routing`
 2. Exercise: **My first Next.js app**, with `npx create-next-app@16.3.6 my-first-next-app --yes`
 3. Code-along: `1-routing/puns`, the puns from the API and one page per pun
 4. Exercise: **Puns client in Next.js**, your own v3 in Next.js
