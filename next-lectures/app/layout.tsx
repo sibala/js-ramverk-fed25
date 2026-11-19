@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 
 const topics = [
   { href: '/1-routing', label: '1. Routing & layouts' },
+  { href: '/2-database', label: '2. Database' },
 ]
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {

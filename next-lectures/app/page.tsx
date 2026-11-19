@@ -6,6 +6,11 @@ const lectures = [
     title: '1. Routing and layouts',
     description: 'Folders are routes, layouts persist, loading.tsx, error.tsx, not-found.tsx, dynamic routes',
   },
+  {
+    href: '/2-database',
+    title: '2. Our own database',
+    description: 'Postgres on Supabase, Route Handlers in app/api (Express moves in), sql in a Server Component',
+  },
 ]
 
 export default function Home() {
