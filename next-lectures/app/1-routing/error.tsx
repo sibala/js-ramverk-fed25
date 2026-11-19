@@ -6,7 +6,12 @@ import { useEffect } from 'react'
  * An error boundary for everything below /1-routing.
  * "reset" re-renders the segment, so the user can try again without a full page reload.
  */
-export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
+type ErrorType = { 
+  error: Error & { digest?: string } 
+  reset: () => void 
+}
+
+export default function Error({ error, reset }: ErrorType) {
   useEffect(() => {
     // In a real app: send this to your logging service
     console.error(error)
