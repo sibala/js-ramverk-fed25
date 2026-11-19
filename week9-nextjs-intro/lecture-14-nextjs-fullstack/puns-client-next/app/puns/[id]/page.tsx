@@ -1,0 +1,96 @@
+"use client"
+
+import { capitalize, formatDate } from "@/lib/format";
+import { Pun } from "@/lib/types";
+import Link from "next/link";
+import { useParams, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+
+const PunDetailPage = () => {
+  const { id } = useParams<{id: string}>()
+  const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+  const [pun, setPun] = useState<Pun | null>(null)
+
+
+  useEffect(() => {
+    const fetchPun = async () => {
+      setIsLoading(true)
+      try {
+        const response = await fetch(`https://pun-api-with-auth.vercel.app/api/puns/${id}`)
+        const data = await response.json()
+        // console.log(data)
+        if (!response.ok) {
+          setError(data.message)
+        }
+
+        setPun(data)
+      } catch(error) {
+        console.log('error')
+        setError(error instanceof Error ? error.message : 'Unknown error')
+      } finally {
+        setIsLoading(false)
+      }
+    }
+
+    fetchPun()
+  }, [id])
+
+
+  const deletePun = async () => {
+    if (!pun) {
+      return
+    }
+
+    setError('')
+    try {
+      const response = await fetch(`https://pun-api-with-auth.vercel.app/api/puns/${pun._id}`, {
+        method: 'DELETE',
+      })
+      const data = await response.json()
+
+      if (!response.ok) {
+        setError(data.message)
+        return
+      }
+      router.push('/')
+    } catch(error) {
+      console.log(error)
+      setError(error instanceof Error ? error.message : 'Unknown error')
+    }
+  }
+
+
+  if (error) {
+    return (
+      <>
+        <h1> {error || '404 – Page not found'}</h1>
+        <Link href="/">Back to all puns</Link>
+      </>
+    )
+  }
+
+  if (!pun) {
+    return (<p>Loading puns...</p>)
+  }
+
+  return (
+    <article className="detail">
+      {isLoading && <p>Loading puns...</p>}
+      <p className="pun-content">{pun.content}</p>
+      <p className="pun-meta">
+        <span className="tag">{capitalize(pun.category || "")}</span>
+        <span>{formatDate(pun.date || '')}</span>
+      </p>
+
+      <section className="actions">
+        <Link href={`/puns/${pun._id}/edit`}>Edit</Link>
+        <button onClick={() => router.back()}>Back</button>
+        <button onClick={deletePun}>Delete</button>
+      </section>
+    </article>
+  )
+}
+
+export default PunDetailPage
