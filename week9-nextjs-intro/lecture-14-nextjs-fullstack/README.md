@@ -72,7 +72,7 @@ npm run dev     # http://localhost:3000/2-database
 
 Give your own `puns-client-next` (lecture 13) its own backend: a Supabase database, and the Pun API's routes as Route Handlers in `app/api/puns`. Then the pages talk to your API instead of the Pun API online, and `_id` becomes `id`. `pun-api` (next to the exercise) is the Express version of the API: compare its `routes/puns.js` with your Route Handlers.
 
-## 6. Reading instructions
+## 7. Reading instructions
 
 - [Route Handlers (Next.js)](https://nextjs.org/docs/app/getting-started/route-handlers)
 - [`route.ts` API reference (Next.js)](https://nextjs.org/docs/app/api-reference/file-conventions/route)
