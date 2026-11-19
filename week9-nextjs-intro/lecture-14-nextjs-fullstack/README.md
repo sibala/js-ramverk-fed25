@@ -43,7 +43,7 @@ npm run dev
 
 `.env` is in `.gitignore`. **Never commit it**: the password is in it. Restart `npm run dev` when you change it: Next.js only reads it when the server starts.
 
-## 3. Code walkthrough: `next-lectures/app/api/puns/` (the API)
+## 4. Code walkthrough: `next-lectures/app/api/puns/` (the API)
 
 The Express routes from the Pun API, as Route Handlers. The folder is the URL, and the function's name is the HTTP method.
 
@@ -53,7 +53,7 @@ The Express routes from the Pun API, as Route Handlers. The folder is the URL, a
 4. `app/api/puns/[id]/route.ts`: `GET` one and `DELETE`. `[id]` is `:punId`, and `ctx.params` is `req.params`. `PATCH` is missing on purpose: you write it yourself in the exercise
 5. Test `POST` and `DELETE` in Thunder Client or Postman, like in the API course
 
-## 4. Code walkthrough: `next-lectures/app/2-database/` (the pages)
+## 5. Code walkthrough: `next-lectures/app/2-database/` (the pages)
 
 ```bash
 npm run dev     # http://localhost:3000/2-database
@@ -66,7 +66,7 @@ npm run dev     # http://localhost:3000/2-database
 
 > Server Component: read the database directly. Client Component: fetch your own API.
 
-## 5. Exercise: Puns full-stack
+## 6. Exercise: Puns full-stack
 
 `puns-fullstack-exercise.md`
 
